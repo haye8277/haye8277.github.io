@@ -1,10 +1,8 @@
-To Do:
-Setup Jekyll
-Setup Waffle
-Choose Framework
-Setup Homepage
-Setup CI
-Setup custom domain
-Setup mail server
+This is my WIP site.
+
+All To Do info can be found at waffle.io
+
 
 FILE TO BE UPDATED
+
+Jacob Hayes
