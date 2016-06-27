@@ -7,9 +7,10 @@
 
 # Site settings
 title: Knee Jar
+email:  Jacob@kneejar.com
 description: Personal Webpage of J.R.H
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "127.0.0.1:4000" # the base hostname & protocol for your site
+url: "www.kneejar.com" # the base hostname & protocol for your site
 twitter_username: jxhaze
 github_username:  haye8277
 # Build settings
