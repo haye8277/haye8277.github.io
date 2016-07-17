@@ -13,5 +13,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "www.kneejar.com" # the base hostname & protocol for your site
 twitter_username: jxhaze
 github_username:  haye8277
+fingerprint:  F7E1 85CD 1CA0 4B63 5721  6B0B 4127 D2E8 792F 3A83
+pgpkey: http://pgp.mit.edu/pks/lookup?op=get&search=0x4127D2E8792F3A83
 # Build settings
 markdown: kramdown

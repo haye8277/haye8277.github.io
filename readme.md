@@ -1,8 +1,12 @@
 This is my WIP site.
 
-All To Do info can be found at waffle.io
+Check out the Blog for recent info.
 
+To do:
 
-FILE TO BE UPDATED
+Analytics
+SSL https
+
+FILE TO BE UPDATED AS TASKS OCCUR
 
 Jacob Hayes

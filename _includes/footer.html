@@ -29,8 +29,15 @@
       </div>
 
       <div class="footer-col footer-col-3">
-        <p>{{ site.description }}</p>
-      </div>
+	<ul class="contact-list">
+    <li>
+     PGP fingerprint: {{ site.fingerprint }} (<a href="{{ site.pgpkey }}">full key</a>)
+    </li>
+   <li>
+	  {{ site.description }}
+	 </li>
+	</ul>
+     </div>
     </div>
 
   </div>

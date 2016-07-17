@@ -1,11 +1,13 @@
 ---
 layout: default
-title: about
+title: About
 permalink: /about/
 ---
 # About Me
 
-Contact information: jacob@kneejar.com
+My name is Jacob, I am a Developer and an Experimental Music producer.
+
+Checkout my <a href="http://www.kneejar.com">Blog</a> for a look inside of what I am doing or check out my projects to check out my latest work or what is to come.
 
 ## Programming
 
@@ -13,4 +15,4 @@ This is site is currently a work in progress, to follow the progress check out t
 
 ## Music
 
-I also produce Experimental Electronic music, a page dedicated to music is currently being worked on but until then you can view all music my music on my <a href="http://www.soundcloud.com/knee-jar"> Soundcloud Page</a>.
+All works can be found on my <a href="http://soundcloud.com/knee-jar">Soundcloud Page</a> I aim to produce dark ambient soundscapes, with heavy electronic influence. I have no formal music training so all my techniques are self-taught which has allowed me to create a very interesting fusion of Experimental Electronic sound Art.
