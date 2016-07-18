@@ -7,7 +7,7 @@ permalink: /about/
 
 My name is Jacob, I am a Developer and an Experimental Music producer.
 
-Checkout my <a href="http://www.kneejar.com">Blog</a> for a look inside of what I am doing or check out my projects to check out my latest work or what is to come.
+Check out my <a href="http://www.kneejar.com">Blog</a> for a look inside of what I am doing or check out my projects to check out my latest work or what is to come.
 
 ## Programming
 

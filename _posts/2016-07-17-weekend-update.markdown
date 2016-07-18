@@ -8,6 +8,7 @@ categories: site update;
 In the new update:
 
 Designed concept layout for new Homepage and Projects pages.
+* Built Place holder pages for Homepage and Projects.
 
 Added PGP fingerprint and key will be up in the footer for contact info if anyone wants to send encrypted messages.
 
