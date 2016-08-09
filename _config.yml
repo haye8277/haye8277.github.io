@@ -8,7 +8,7 @@
 # Site settings
 title: Knee Jar
 email:  Jacob@kneejar.com
-description: Personal Webpage of J.R.H
+description: Personal Webpage of J.H
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "www.kneejar.com" # the base hostname & protocol for your site
 twitter_username: jxhaze
