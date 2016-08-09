@@ -4,34 +4,42 @@ title: Projects
 permalink: /projects/
 ---
 
-## Coding
+# **Music Production**
 
 
+## Completed Albums
 
 
-## Music Production
-
-
-### Completed Albums
-
-
-Sik Six -
+**Sik Six**
 
 - Released: 24 October 2015
 - Number of songs: 6
 - Album Length 9:45
 - Link: [Sik Six](http://www.soundcloud.com/knee-jar/sets/sik-six)
 
-High Five -
+**High Five**
 
 - Released: 2 March 2016
 - Number of songs: 5
 - Album Length 11:05
 - Link: [High Five](http://www.soundcloud.com/knee-jar/sets/high-five)
 
-Occlude -
+**Occlude**
 
 - Released: 25 March 2016
 - Number of songs: 3
 - Album Length 5:58
 - Link: [Occlude](http://www.soundcloud.com/knee-jar/sets/occlude)    
+
+## Works In Progress
+
+4e657720616c62756d20696e2074686520776f726b73
+
+
+# **Computer Programming**
+
+~ Currently being worked ~
+Checkout my [Github Page](https://www.github.com/haye8277) for the most up to date projects being worked on.
+
+# **Video Editing**
+~ Coming Soon ~
