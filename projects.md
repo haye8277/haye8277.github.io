@@ -33,13 +33,15 @@ permalink: /projects/
 
 ## Works In Progress
 
-4e657720616c62756d20696e2074686520776f726b73
+Current Project Delayed as of 08-23-2016.
 
 
 # **Computer Programming**
 
 ~ Currently being worked ~
 Checkout my [Github Page](https://www.github.com/haye8277) for the most up to date projects being worked on.
+
+Checkout the current project I am working on [here](https://github.com/jordansite/).
 
 # **Video Editing**
 ~ Coming Soon ~
