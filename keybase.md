@@ -77,3 +77,5 @@ appending to this document.
 View my publicly-auditable identity here: https://keybase.io/namespace
 
 ==================================================================
+
+This is my keybase Auth Page! Nothing less and nothing more.
