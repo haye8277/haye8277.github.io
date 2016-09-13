@@ -10,7 +10,7 @@ title: Knee Jar
 email:  Jacob@kneejar.com
 description: Personal Webpage of J.H
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://www.kneejar.com" # the base hostname & protocol for your site
+url: https://www.kneejar.com # the base hostname & protocol for your site
 twitter_username: jxhaze
 github_username:  haye8277
 fingerprint:  F7E1 85CD 1CA0 4B63 5721  6B0B 4127 D2E8 792F 3A83
