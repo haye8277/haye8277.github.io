@@ -1,4 +1,1 @@
-RewriteEngine On
-RewriteCond %{SERVER_PORT} !=443
-RewriteCond %{HTTP_HOST} ^(www\.)?kneejar\.com$ [NC]
-RewriteRule ^$ https://kneejar.com%{REQUEST_URI} [R=301,L]
+Redirect / "https://www.kneejar.com/"
