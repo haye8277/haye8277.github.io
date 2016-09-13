@@ -2,7 +2,7 @@
 layout: post
 title:  "I've Been Busy!"
 date:   2016-09-13 04:05:00 -0400
-categories: site update;Personal update;
+categories: site update
 ---
 
 

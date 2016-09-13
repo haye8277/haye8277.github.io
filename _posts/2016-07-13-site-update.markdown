@@ -2,7 +2,7 @@
 layout:	post
 title:	"Site update July 13th"
 date:	2016-07-13 00:43:42 -0400
-categories:	update; July; WIP;
+categories:	update
 ---
 
 Just a quick update on the site today, updated the about me page, and a few other suttle things.

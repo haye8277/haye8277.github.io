@@ -2,7 +2,7 @@
 layout: post
 title:  "August 9th quick update"
 date:   2016-08-09 06:12:00 -0400
-categories: site update;
+categories: site update
 ---
 
 ## Site Updates

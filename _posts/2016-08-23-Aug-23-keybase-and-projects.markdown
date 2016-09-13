@@ -2,7 +2,7 @@
 layout: post
 title:  "Keybase and Project updates"
 date:   2016-08-23 05:05:00 -0400
-categories: site update;
+categories: site update
 ---
 
 ## Site Updates
