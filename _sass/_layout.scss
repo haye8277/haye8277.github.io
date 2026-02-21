@@ -555,9 +555,13 @@
 // Stats grid
 .ri-stats {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 12px;
     margin-bottom: $spacing-unit * 2;
+
+    @include media-query($on-laptop) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 
     @include media-query($on-palm) {
         grid-template-columns: 1fr 1fr;
