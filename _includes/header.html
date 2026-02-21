@@ -1,5 +1,4 @@
 <header class="site-header">
-
   <div class="wrapper">
 
     <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
@@ -14,14 +13,13 @@
       </a>
 
       <div class="trigger">
-        {% for my_page in site.pages %}
-          {% if my_page.title %}
-          <a class="page-link" href="{{ my_page.url }}">{{ my_page.title }}</a>
-          {% endif %}
-        {% endfor %}
+        <a class="page-link{% if page.url == '/' %} active{% endif %}" href="{{ site.baseurl }}/">Home</a>
+        <a class="page-link{% if page.url contains '/about' %} active{% endif %}" href="{{ site.baseurl }}/about/">About</a>
+        <a class="page-link{% if page.url contains '/blog' %} active{% endif %}" href="{{ site.baseurl }}/blog/">Blog</a>
+        <a class="page-link{% if page.url contains '/projects' %} active{% endif %}" href="{{ site.baseurl }}/projects/">Projects</a>
+        <a class="page-link{% if page.url contains '/contact' %} active{% endif %}" href="{{ site.baseurl }}/contact/">Contact</a>
       </div>
     </nav>
 
   </div>
-
 </header>
