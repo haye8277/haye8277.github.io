@@ -1425,6 +1425,46 @@
     }
 }
 
+// Back to top button
+#back-to-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: $brand-color;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease;
+    z-index: 999;
+
+    &:hover {
+        background-color: lighten($brand-color, 8%);
+    }
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    @include media-query($on-palm) {
+        bottom: 18px;
+        right: 18px;
+        width: 38px;
+        height: 38px;
+    }
+}
+
 // Blog listing — card style
 .blog-posts {
     display: flex;
