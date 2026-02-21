@@ -3,10 +3,10 @@
  */
 .site-header {
     border-bottom: 1px solid $grey-color-light;
-    background-color: #fff;
+    background-color: #07121f;
     min-height: 64px;
     position: relative;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
 
 .site-title {
@@ -65,11 +65,11 @@
         position: absolute;
         top: 12px;
         right: $spacing-unit / 2;
-        background-color: #fff;
+        background-color: #0d1b2a;
         border: 1px solid $grey-color-light;
         border-radius: 8px;
         text-align: right;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
         z-index: 100;
 
         .menu-icon {
@@ -129,7 +129,7 @@
  */
 .site-footer {
     border-top: 1px solid $grey-color-light;
-    background-color: #fff;
+    background-color: #07121f;
     padding: 18px 0;
     margin-top: auto;
 }
@@ -539,7 +539,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background-color: #102338;
     border: 1px solid $grey-color-light;
     border-radius: 10px;
     padding: 24px $spacing-unit;
@@ -613,7 +613,7 @@
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: $brand-color;
-    background-color: lighten($brand-color, 38%);
+    background-color: rgba(77, 166, 232, 0.12);
     padding: 3px 10px;
     border-radius: 4px;
     margin-bottom: 8px;
@@ -637,7 +637,7 @@
 }
 
 .ri-skill-card {
-    background-color: #fff;
+    background-color: #102338;
     border: 1px solid $grey-color-light;
     border-top: 3px solid $brand-color;
     border-radius: 8px;
@@ -700,7 +700,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 22px 24px;
-    background-color: #fff;
+    background-color: #102338;
     border: 1px solid $grey-color-light;
     border-radius: 8px;
     text-decoration: none;
@@ -854,13 +854,13 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: #f0faf0;
-    border: 1px solid #c3e6cb;
+    background-color: rgba(64, 192, 116, 0.1);
+    border: 1px solid rgba(64, 192, 116, 0.25);
     border-radius: 20px;
     padding: 6px 14px;
     font-size: 13px;
     font-weight: 500;
-    color: #2d6a4f;
+    color: #6ee7a0;
     margin-bottom: 20px;
 }
 
@@ -917,7 +917,7 @@
     padding: 20px;
     border: 1px solid $grey-color-light;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: #102338;
     transition: box-shadow 0.2s ease, border-color 0.2s ease;
 
     &:hover {
@@ -963,7 +963,7 @@
     padding: 20px;
     border: 1px solid $grey-color-light;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: #102338;
     text-decoration: none;
     transition: box-shadow 0.2s ease, border-color 0.2s ease;
 
@@ -1006,7 +1006,7 @@
 }
 
 .resume-consultation {
-    background-color: #fff;
+    background-color: #102338;
     border: 1px solid $grey-color-light;
     border-radius: 10px;
     padding: $spacing-unit * 1.2;
