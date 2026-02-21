@@ -5,7 +5,6 @@ permalink: /blog/
 ---
 
 <div class="ri-section-header" style="margin-bottom: 36px;">
-  <span class="ri-section-tag">Writing</span>
   <h2>Blog</h2>
   <p style="color: #85b8d4; font-size: 15px; margin-top: 8px; margin-bottom: 0;">Thoughts, updates, and things worth writing down.</p>
 </div>
