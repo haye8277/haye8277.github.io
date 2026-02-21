@@ -27,21 +27,33 @@ permalink: /about/
   <div class="about-cards">
 
     <div class="about-card">
+      <div class="about-card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      </div>
       <h3>Marketing</h3>
       <p>Marketing is where I started and it's still what I find most interesting. I care about the message more than the medium — figuring out what actually resonates with people and building from there. I'm not big on fluff or vanity metrics. Just stuff that works.</p>
     </div>
 
     <div class="about-card">
+      <div class="about-card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
       <h3>Programming</h3>
       <p>I studied computer science at the <strong>University of Waterloo</strong> and have been picking things apart ever since. I'm not a full-time developer, but I've built workarounds, written scripts, and patched together solutions at more than a few workplaces. It's handy being able to speak the language when you need to. My stuff is on <a href="https://github.com/haye8277" target="_blank" rel="noopener">GitHub</a> if you want to have a look.</p>
     </div>
 
     <div class="about-card">
+      <div class="about-card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      </div>
       <h3>Music Production</h3>
       <p>This one's purely for fun. I make weird electronic music under the name <strong>Knee Jar</strong> — dark, ambient, a little hard to describe. No formal training, no rules, just messing around until something sounds interesting. Lately I've been playing around with some AI production tools which has opened up a few unexpected directions. If you're curious, <a href="https://soundcloud.com/knee-jar" target="_blank" rel="noopener">SoundCloud</a> has everything.</p>
     </div>
 
     <div class="about-card">
+      <div class="about-card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
       <h3>AI &amp; Emerging Tech</h3>
       <p>I follow the AI space pretty closely — not in an obsessive way, just genuinely curious about where it's all going. I'm always looking for ways to use new tools to make things a bit more efficient, whether that's at work or in the music studio. The practical applications are what get me excited, less so the hype.</p>
     </div>
