@@ -4,22 +4,23 @@ title: Blog
 permalink: /blog/
 ---
 
-<div class="blog-header">
-  <h1>Blog</h1>
-  <p class="blog-description">Thoughts, updates, and things worth writing down.</p>
+<div class="ri-section-header" style="margin-bottom: 36px;">
+  <span class="ri-section-tag">Writing</span>
+  <h2>Blog</h2>
+  <p style="color: #85b8d4; font-size: 15px; margin-top: 8px; margin-bottom: 0;">Thoughts, updates, and things worth writing down.</p>
 </div>
 
-<ul class="post-list">
+<div class="blog-posts">
   {% for post in site.posts %}
-    <li class="post-item">
-      <span class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
-      <h2 class="post-item-title">
+    <div class="blog-card">
+      <div class="blog-card-meta">{{ post.date | date: "%B %-d, %Y" }}</div>
+      <h2 class="blog-card-title">
         <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
       </h2>
       {% if post.excerpt %}
-      <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+      <p class="blog-card-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
       {% endif %}
-      <a class="post-read-more" href="{{ post.url | prepend: site.baseurl }}">Read more &rarr;</a>
-    </li>
+      <a class="blog-card-link" href="{{ post.url | prepend: site.baseurl }}">Read more &rarr;</a>
+    </div>
   {% endfor %}
-</ul>
+</div>
