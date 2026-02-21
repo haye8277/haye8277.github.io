@@ -28,11 +28,6 @@ permalink: /about/
   <div class="about-cards">
 
     <div class="about-card">
-      <h3>Project Management</h3>
-      <p>I've spent a lot of time keeping things from falling apart. Managing across departments, wrangling timelines, making sure product development actually makes it from idea to reality — that's the kind of work I've grown into over the years. I like having a lot of moving parts, honestly. Keeps things interesting.</p>
-    </div>
-
-    <div class="about-card">
       <h3>Marketing</h3>
       <p>Marketing is where I started and it's still what I find most interesting. I care about the message more than the medium — figuring out what actually resonates with people and building from there. I'm not big on fluff or vanity metrics. Just stuff that works.</p>
     </div>
