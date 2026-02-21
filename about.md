@@ -22,7 +22,6 @@ permalink: /about/
 
 <div class="ri-section">
   <div class="ri-section-header">
-    <span class="ri-section-tag">Background</span>
     <h2>A Bit About Me</h2>
   </div>
   <div class="about-cards">
