@@ -572,16 +572,24 @@
 .ri-stat {
     display: flex;
     flex-direction: column;
-    gap: 6px;
     background-color: #102338;
     border: 1px solid $grey-color-light;
     border-radius: 10px;
     padding: 20px;
 }
 
+.ri-stat-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
 .ri-stat-icon {
     color: $brand-color;
-    margin-bottom: 10px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
 }
 
 .ri-stat-number {
