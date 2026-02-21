@@ -429,6 +429,24 @@
     max-width: 100%;
 }
 
+.ri-hero-icon {
+    margin-bottom: 20px;
+
+    img {
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
+        object-fit: cover;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+        @include media-query($on-palm) {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+        }
+    }
+}
+
 .ri-eyebrow {
     font-size: 12px;
     font-weight: 700;
@@ -534,40 +552,31 @@
     }
 }
 
-// Stats bar
+// Stats grid
 .ri-stats {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #102338;
-    border: 1px solid $grey-color-light;
-    border-radius: 10px;
-    padding: 24px $spacing-unit;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
     margin-bottom: $spacing-unit * 2;
-    flex-wrap: wrap;
-    gap: 16px;
 
     @include media-query($on-palm) {
-        justify-content: flex-start;
-        gap: 20px;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
     }
 }
 
 .ri-stat {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 4px;
-
-    @include media-query($on-palm) {
-        align-items: flex-start;
-        text-align: left;
-    }
+    gap: 6px;
+    background-color: #102338;
+    border: 1px solid $grey-color-light;
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .ri-stat-number {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     color: $text-color;
     letter-spacing: -0.5px;
@@ -580,27 +589,19 @@
 }
 
 .ri-stat-label {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     color: $grey-color;
-    line-height: 1.4;
-    max-width: 140px;
-    text-align: center;
-
-    @include media-query($on-palm) {
-        text-align: left;
-        max-width: none;
-    }
+    line-height: 1.5;
 }
 
 .ri-stat-divider {
-    width: 1px;
-    height: 40px;
-    background-color: $grey-color-light;
+    display: none;
+}
 
-    @include media-query($on-palm) {
-        display: none;
-    }
+// Bottom section wrapper
+.ri-bottom {
+    margin-top: $spacing-unit * 2;
 }
 
 // Kneejar blurb
@@ -721,8 +722,12 @@
 
 .ri-skills {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 16px;
+
+    @include media-query($on-laptop) {
+        grid-template-columns: 1fr 1fr;
+    }
 
     @include media-query($on-palm) {
         grid-template-columns: 1fr;
