@@ -1274,14 +1274,14 @@
     border-radius: 6px;
     font-size: 14px;
     font-weight: 600;
-    border: 1px solid $grey-color-light;
-    color: $grey-color-dark;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
     transition: all 0.2s ease;
 
     &:hover {
-        border-color: $brand-color;
-        color: $brand-color;
+        border-color: rgba(255, 255, 255, 0.7);
+        color: #fff;
         text-decoration: none;
     }
 }
@@ -1316,16 +1316,19 @@
 
 // About page — redesigned hero + cards
 .about-hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    border-radius: 12px;
+    padding: ($spacing-unit * 2) ($spacing-unit * 1.5);
+    margin-bottom: $spacing-unit * 1.5;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: $spacing-unit * 1.5;
-    margin-bottom: $spacing-unit * 2;
-    padding-bottom: $spacing-unit * 2;
-    border-bottom: 1px solid $grey-color-light;
 
     @include media-query($on-palm) {
         flex-direction: column;
+        align-items: flex-start;
         gap: $spacing-unit;
+        padding: ($spacing-unit * 1.5) $spacing-unit;
     }
 }
 
@@ -1333,17 +1336,18 @@
     flex-shrink: 0;
 
     img {
-        width: 140px;
-        height: 140px;
+        width: 120px;
+        height: 120px;
         border-radius: 50%;
         object-fit: cover;
-        border: 3px solid $grey-color-light;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     }
 
     @include media-query($on-palm) {
         img {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
         }
     }
 }
@@ -1357,7 +1361,7 @@
     font-weight: 700;
     letter-spacing: -2px;
     line-height: 1;
-    color: $text-color;
+    color: #fff;
     margin-bottom: 14px;
 
     @include media-query($on-palm) {
@@ -1368,7 +1372,7 @@
 
 .about-hero-tagline {
     font-size: 16px;
-    color: $grey-color-dark;
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.7;
     max-width: 540px;
     margin-bottom: 20px;
@@ -1385,8 +1389,17 @@
     grid-template-columns: 1fr 1fr;
     gap: 16px;
 
+    // Last card spans full width when it would sit alone in a row
+    .about-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+
     @include media-query($on-palm) {
         grid-template-columns: 1fr;
+
+        .about-card:last-child:nth-child(odd) {
+            grid-column: auto;
+        }
     }
 }
 
