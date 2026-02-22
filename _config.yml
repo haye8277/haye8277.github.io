@@ -12,7 +12,7 @@ description: Personal Webpage of J.H
 baseurl: "" # the subpath of your site, e.g. /blog
 url: 'https://www.kneejar.com' # the base hostname & protocol for your site
 github_username:  haye8277
-linkedin_url:     https://ca.linkedin.com/in/jacob-hayes-028a733170
+linkedin_url:     https://www.linkedin.com/in/jacob-hayes-028a73170
 # Build settings
 markdown: kramdown
 
