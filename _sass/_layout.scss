@@ -1358,6 +1358,12 @@
 .about-hero-photo {
     flex-shrink: 0;
 
+    img.profile-img:not([src]),
+    img.profile-img[src=""],
+    img.profile-img:-moz-broken {
+        display: none;
+    }
+
     img {
         width: 120px;
         height: 120px;

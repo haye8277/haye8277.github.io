@@ -6,7 +6,7 @@ permalink: /about/
 
 <div class="about-hero">
   <div class="about-hero-photo">
-    <img src="{{ site.baseurl }}/assets/img/profile.jpg" alt="Jacob Hayes" onerror="this.style.display='none'">
+    <img src="{{ site.baseurl }}/assets/img/profile.jpg" alt="Jacob Hayes" class="profile-img">
   </div>
   <div class="about-hero-text">
     <div class="ri-eyebrow" style="margin-bottom:10px;">Nice to meet you</div>
