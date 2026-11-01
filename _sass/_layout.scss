@@ -182,12 +182,12 @@ body::after {
     position: sticky;
     top: 0;
     z-index: 50;
-    padding: 20px 0;
+    padding: 12px 0;
     border-bottom: 1px solid transparent;
     transition: padding 0.35s $ease-out, background-color 0.35s ease, border-color 0.35s ease;
 
     &.scrolled {
-        padding: 12px 0;
+        padding: 8px 0;
         background: var(--bg);
         background: color-mix(in srgb, var(--bg) 82%, transparent);
         -webkit-backdrop-filter: blur(14px) saturate(1.4);
@@ -203,10 +203,13 @@ body::after {
     gap: 16px;
 }
 
+// Brand lockup: monogram | fine rule | name. The monogram's box is cropped to its
+// ink, so it fills its spot and its left edge lines up with the page content.
 .brand {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
+    line-height: 1;
     color: var(--ink);
 
     &:hover {
@@ -220,21 +223,29 @@ body::after {
     }
 }
 
-// The monogram stands on its own: no badge, just the signature
 .brand-mark {
     flex: none;
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
+    display: block;
     color: var(--ink);
     transition: transform 0.45s $ease-spring, color 0.3s ease;
+}
+
+.brand-rule {
+    flex: none;
+    width: 1px;
+    height: 28px;
+    background: var(--muted);
+    opacity: 0.45;
+    transition: height 0.35s $ease-out;
+
+    .site-header.scrolled & { height: 22px; }
 }
 
 .brand-name {
     font-family: $heading-font-family;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 21px;
+    line-height: 1;
     letter-spacing: -0.01em;
 }
 
@@ -299,8 +310,8 @@ body::after {
 }
 
 @include media-query($on-palm) {
-    .site-header { padding: 14px 0; }
-    .brand-name, .nav-cta { display: none; }
+    .site-header { padding: 10px 0; }
+    .brand-name, .brand-rule, .nav-cta { display: none; }
     .site-nav { gap: 18px; }
     .nav-link { font-size: 14px; }
 }
@@ -2726,11 +2737,23 @@ a.now-text:hover {
 // all (class .is-redrawing) on hover.
 $pen-pace: cubic-bezier(0.45, 0.05, 0.55, 0.95);
 
+// Sized by height; the cropped viewBox sets the width. It eases smaller as the
+// header compacts on scroll.
 .monogram {
     display: block;
-    width: 44px;
-    height: 44px;
+    height: 56px;
+    width: auto;
+    aspect-ratio: 22.2 / 28.1;
     overflow: visible;
+    transition: height 0.35s $ease-out;
+
+    .site-header.scrolled & { height: 40px; }
+
+    @include media-query($on-palm) {
+        height: 46px;
+
+        .site-header.scrolled & { height: 38px; }
+    }
 
     .mono-line {
         fill: none;
