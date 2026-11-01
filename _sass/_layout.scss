@@ -1596,10 +1596,6 @@ body::before {
     stroke-linejoin: round;
 }
 
-.saber-icon-blade {
-    stroke-width: 2.2;
-    filter: drop-shadow(0 0 1.5px var(--accent));
-}
 
 // The droid rocks side to side as it rolls along
 .ship-droid {
@@ -1642,9 +1638,6 @@ body::before {
     animation: spark 0.45s ease-out forwards;
 }
 
-.spark-deflect {
-    background: radial-gradient(circle, #fff 0 18%, var(--accent) 40%, transparent 70%);
-}
 
 @keyframes spark {
     from { transform: scale(0.3); opacity: 1; }
@@ -2242,4 +2235,209 @@ a.now-text:hover {
 
         &:last-child::before { box-shadow: 0 0 0 4px var(--accent-glow); }
     }
+}
+
+
+
+/**
+ * Little battles on the inner pages
+ */
+
+// About: an X-wing chasing a TIE around the portrait.
+// The ring is sized from --size; ships sit at fixed angles on it while the whole ring spins,
+// so the X-wing (32deg behind) always trails the TIE.
+.about-photo {
+    position: relative;
+    isolation: isolate;
+    --size: 340px;
+
+    @include media-query($on-laptop) { --size: 270px; }
+
+    // centred on phones so the chase ring has room on both sides
+    @include media-query($on-palm) { justify-self: center; }
+}
+
+.chase {
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 50%;
+    width: var(--size);
+    height: var(--size);
+    margin-left: calc(var(--size) / -2);
+    margin-top: calc(var(--size) / -2);
+    pointer-events: none;
+}
+
+.chase-ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--accent);
+    opacity: 0.45;
+}
+
+.chase-spin {
+    position: absolute;
+    inset: 0;
+    animation: spin 26s linear infinite;
+}
+
+.chase-ship {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    margin: -11px 0 0 -11px;
+
+    .ship { display: block; width: 22px; height: 22px; }
+}
+
+.chase-tie {
+    left: 50%;
+    top: 0;
+
+    .ship {
+        stroke: var(--ink-soft);
+        animation: chase-hit 2.8s linear infinite;
+    }
+}
+
+// sin/cos of 32deg place the X-wing on the ring behind the TIE
+.chase-xwing {
+    left: 23.5%;
+    top: 7.6%;
+    rotate: -32deg;
+}
+
+.chase-bolt {
+    position: absolute;
+    left: 23.5%;
+    top: 7.6%;
+    width: 10px;
+    height: 2px;
+    margin: -1px 0 0 -5px;
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 0 0 1px #ff5a3c, 0 0 7px 1px #ff5a3c;
+    rotate: -16deg;
+    opacity: 0;
+    animation: chase-pew 2.8s linear infinite;
+}
+
+// chord between the two ships = size * sin(16deg)
+@keyframes chase-pew {
+    0%       { opacity: 0; transform: translateX(10px); }
+    4%       { opacity: 1; }
+    26%      { opacity: 1; transform: translateX(calc(var(--size) * 0.2756 - 12px)); }
+    27%, 100% { opacity: 0; transform: translateX(calc(var(--size) * 0.2756 - 12px)); }
+}
+
+@keyframes chase-hit {
+    0%, 25%, 40%, 100% { filter: none; }
+    28%                { filter: drop-shadow(0 0 3px #ffb35c) brightness(1.6); }
+}
+
+// Projects: a dogfight that crosses the top of the page every so often
+.page-hero-noted {
+    @include media-query($on-laptop) { padding-top: 44px; }
+}
+
+.flyby-lane {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 6px;
+    height: 28px;
+    overflow: hidden;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+
+    @include media-query($on-laptop) { top: 4px; }
+}
+
+.flyby {
+    position: absolute;
+    top: 3px;
+    left: -220px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    animation: flyby 12s linear infinite;
+    animation-delay: 1.5s;
+
+    .ship { display: block; width: 22px; height: 22px; }
+}
+
+@keyframes flyby {
+    0%        { left: -220px; }
+    30%       { left: 100%; }
+    30.01%, 100% { left: 100%; }
+}
+
+.flyby-tie .ship { stroke: var(--ink-soft); }
+
+.flyby-xwing {
+    margin-left: 34px;
+    animation: weave 1.4s ease-in-out infinite;
+}
+
+@keyframes weave {
+    0%, 100% { translate: 0 -3px; }
+    50%      { translate: 0 3px; }
+}
+
+.flyby-bolt {
+    width: 10px;
+    height: 2px;
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 0 0 1px #3fd07a, 0 0 7px 1px #3fd07a;
+    animation: flyby-pew 0.7s linear infinite;
+}
+
+@keyframes flyby-pew {
+    0%   { transform: translateX(0); opacity: 1; }
+    80%  { opacity: 1; }
+    100% { transform: translateX(40px); opacity: 0; }
+}
+
+// Blog: a little droid patrolling the bottom of the featured card
+.droid-patrol {
+    position: absolute;
+    right: 44px;
+    bottom: 26px;
+    width: 170px;
+    height: 30px;
+    pointer-events: none;
+
+    @include media-query($on-palm) { right: 20px; bottom: 30px; width: 130px; }
+}
+
+.droid-turn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    animation: patrol 10s ease-in-out infinite;
+
+    .ship { display: block; width: 28px; height: 28px; }
+
+    @include media-query($on-palm) { animation-name: patrol-short; }
+}
+
+@keyframes patrol {
+    0%   { transform: translateX(0) scaleX(1); }
+    45%  { transform: translateX(-140px) scaleX(1); }
+    50%  { transform: translateX(-140px) scaleX(-1); }
+    95%  { transform: translateX(0) scaleX(-1); }
+    100% { transform: translateX(0) scaleX(1); }
+}
+
+@keyframes patrol-short {
+    0%   { transform: translateX(0) scaleX(1); }
+    45%  { transform: translateX(-100px) scaleX(1); }
+    50%  { transform: translateX(-100px) scaleX(-1); }
+    95%  { transform: translateX(0) scaleX(-1); }
+    100% { transform: translateX(0) scaleX(1); }
 }

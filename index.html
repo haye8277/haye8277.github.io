@@ -34,7 +34,7 @@ title: Marketing, operations and product
         <li class="flyer flyer-1">{% include ship-xwing.svg %}<span>Marketing</span></li>
         <li class="flyer flyer-2">{% include ship-droid.svg %}<span>Project Management</span></li>
         <li class="flyer flyer-3">{% include ship-freighter.svg %}<span>Product Development</span></li>
-        <li class="flyer flyer-4">{% include ship-saber.svg %}<span>Customer Experience</span></li>
+        <li class="flyer flyer-4">{% include ship-protocol.svg %}<span>Customer Experience</span></li>
         <li class="flyer flyer-5">{% include ship-tie.svg %}<span>Developer</span></li>
         <li class="flyer flyer-6">{% include ship-station.svg %}<span>Music Maker</span></li>
       </ul>
@@ -47,7 +47,7 @@ title: Marketing, operations and product
 <script>
   // A tiny space battle between the icons around the portrait.
   // Rebels (X-wing, freighter) fire red; the Empire (TIEs, station) fires green.
-  // The lightsaber deflects, the droid just takes it.
+  // The droids just take it.
   (function() {
     var fig = document.querySelector('.hero-photo');
     if (!fig || !fig.animate) return;
@@ -72,9 +72,9 @@ title: Marketing, operations and product
       return { x: r.left + r.width / 2 - f.left, y: r.top + r.height / 2 - f.top };
     }
 
-    function burst(p, deflect) {
+    function burst(p) {
       var spark = document.createElement('span');
-      spark.className = 'spark' + (deflect ? ' spark-deflect' : '');
+      spark.className = 'spark';
       spark.style.left = p.x + 'px';
       spark.style.top = p.y + 'px';
       layer.appendChild(spark);
@@ -82,9 +82,7 @@ title: Marketing, operations and product
     }
 
     function hit(target) {
-      var deflect = target.classList.contains('ship-saber');
-      burst(centre(target), deflect);
-      if (deflect) return;
+      burst(centre(target));
       target.classList.add('is-hit');
       setTimeout(function() { target.classList.remove('is-hit'); }, 400);
     }
@@ -130,6 +128,92 @@ title: Marketing, operations and product
 
     // Let the fleet finish flying in before the shooting starts
     setTimeout(turn, 2600);
+
+    // Every so often an icon pops out of its holder, does its own trick, and slots back in.
+    // Only the icon moves (via the translate/rotate properties, so flipped ships stay flipped);
+    // the holder underneath stays exactly where it is.
+    var phone = window.matchMedia('(max-width: 600px)');
+    var busy = {};
+
+    var tricks = {
+      // barrel roll out and back, with a parting shot
+      xwing: { duration: 1800, shoot: 'rebel', frames: function(dx, dy) { return [
+        { translate: '0 0', rotate: '0deg' },
+        { translate: dx + 'px ' + dy + 'px', rotate: '-20deg', offset: 0.35 },
+        { translate: dx * 0.6 + 'px ' + (dy - 24) + 'px', rotate: '200deg', offset: 0.6 },
+        { translate: dx * 0.2 + 'px ' + dy * 0.4 + 'px', rotate: '340deg', offset: 0.85 },
+        { translate: '0 0', rotate: '360deg' }
+      ]; } },
+      // jinking zig-zag, also firing
+      tie: { duration: 1500, shoot: 'empire', frames: function(dx, dy) { return [
+        { translate: '0 0' },
+        { translate: dx * 0.5 + 'px ' + (dy - 10) + 'px', offset: 0.25 },
+        { translate: dx + 'px ' + (dy + 14) + 'px', offset: 0.5 },
+        { translate: dx * 0.4 + 'px ' + (dy - 6) + 'px', offset: 0.75 },
+        { translate: '0 0' }
+      ]; } },
+      // a lazy wide arc
+      freighter: { duration: 2200, frames: function(dx, dy) { return [
+        { translate: '0 0', rotate: '0deg' },
+        { translate: dx + 'px ' + dy + 'px', rotate: (dx < 0 ? 25 : -25) + 'deg', offset: 0.4 },
+        { translate: dx * 0.8 + 'px ' + (-dy * 0.6) + 'px', rotate: (dx < 0 ? -15 : 15) + 'deg', offset: 0.75 },
+        { translate: '0 0', rotate: '0deg' }
+      ]; } },
+      // hop out, flip, hop home
+      droid: { duration: 1400, frames: function(dx) { return [
+        { translate: '0 0', rotate: '0deg' },
+        { translate: dx * 0.3 + 'px -28px', rotate: '0deg', offset: 0.3 },
+        { translate: dx * 0.5 + 'px 0px', rotate: '0deg', offset: 0.5 },
+        { translate: dx * 0.3 + 'px -18px', rotate: '360deg', offset: 0.75 },
+        { translate: '0 0', rotate: '360deg' }
+      ]; } },
+      // a nervous little shuffle out and back
+      protocol: { duration: 1600, frames: function(dx) { return [
+        { translate: '0 0', rotate: '0deg' },
+        { translate: dx * 0.3 + 'px -16px', rotate: '-12deg', offset: 0.25 },
+        { translate: dx * 0.45 + 'px -10px', rotate: '12deg', offset: 0.5 },
+        { translate: dx * 0.3 + 'px -16px', rotate: '-12deg', offset: 0.75 },
+        { translate: '0 0', rotate: '0deg' }
+      ]; } },
+      // a slow, heavy drift
+      station: { duration: 2600, frames: function(dx, dy) { return [
+        { translate: '0 0', rotate: '0deg' },
+        { translate: dx * 0.4 + 'px ' + dy * 0.5 + 'px', rotate: '-30deg', offset: 0.5 },
+        { translate: '0 0', rotate: '0deg' }
+      ]; } }
+    };
+
+    function stunt() {
+      if (onScreen && !document.hidden) {
+        var n = 1 + Math.floor(Math.random() * 6);
+        var flyer = fig.querySelector('.flyer-' + n);
+        var ship = flyer && flyer.querySelector('.ship');
+        var kind = ship && ship.getAttribute('class').replace(/.*ship-(\w+).*/, '$1');
+        var trick = tricks[kind];
+        if (trick && !busy[n]) {
+          busy[n] = true;
+          // fly away from the photo on desktop, straight up on phones
+          var dx = phone.matches ? 0 : (n <= 3 ? -70 : 70);
+          var dy = phone.matches ? -46 : -30;
+          flyer.style.zIndex = 4;
+          var anim = ship.animate(trick.frames(dx, dy), { duration: trick.duration, easing: trick.easing || 'ease-in-out' });
+          if (trick.shoot) {
+            setTimeout(function() {
+              var target = pick(sides[trick.shoot].targets);
+              if (target && target !== ship && target.getBoundingClientRect().width) fire(ship, target, trick.shoot);
+            }, trick.duration * 0.4);
+          }
+          setTimeout(function() {
+            anim.cancel();
+            flyer.style.zIndex = '';
+            busy[n] = false;
+          }, trick.duration);
+        }
+      }
+      setTimeout(stunt, 2500 + Math.random() * 3500);
+    }
+
+    setTimeout(stunt, 4000);
   })();
 </script>
 

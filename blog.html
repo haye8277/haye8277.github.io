@@ -21,6 +21,7 @@ permalink: /blog/
   <h2>{{ latest.title }}</h2>
   <p>{{ latest.excerpt | strip_html | truncate: 220 }}</p>
   <span class="btn btn-primary">Read it <span class="btn-arrow" aria-hidden="true">&rarr;</span></span>
+  <span class="droid-patrol" aria-hidden="true"><span class="droid-turn">{% include ship-droid.svg %}</span></span>
 </a>
 
 {% assign years = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}

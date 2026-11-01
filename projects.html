@@ -7,6 +7,14 @@ permalink: /projects/
 {% assign build_post = site.posts | where: "slug", "what-ive-been-building" | first %}
 <section class="page-hero page-hero-noted">
   <span class="note note-page" aria-hidden="true">all built after hours</span>
+  <!-- Every so often a dogfight zips across the top of the page -->
+  <div class="flyby-lane" aria-hidden="true">
+    <div class="flyby">
+      <span class="flyby-tie">{% include ship-tie.svg %}</span>
+      <span class="flyby-bolt"></span>
+      <span class="flyby-xwing">{% include ship-xwing.svg %}</span>
+    </div>
+  </div>
   <p class="eyebrow hero-in" style="--d: 0">Projects</p>
   <h1 class="page-title hero-in" style="--d: 1">Tools built from <em>real</em> problems.</h1>
   <p class="hero-tagline hero-in" style="--d: 2">Each of these started as "there has to be an easier way" at work. Built in evenings, with modern tools that make a one-person team a lot faster.</p>

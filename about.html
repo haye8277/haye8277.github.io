@@ -9,6 +9,15 @@ permalink: /about/
     <div class="arch arch-small">
       <img src="{{ site.baseurl }}/assets/img/portrait.jpg" alt="Jacob Hayes" width="900" height="1127" fetchpriority="high">
     </div>
+    <!-- An X-wing chasing a TIE around the portrait -->
+    <div class="chase" aria-hidden="true">
+      <svg class="chase-ring" viewBox="0 0 200 200"><circle cx="100" cy="100" r="99" fill="none" stroke="currentColor" stroke-width="0.6" stroke-dasharray="2 6"/></svg>
+      <div class="chase-spin">
+        <span class="chase-ship chase-tie">{% include ship-tie.svg %}</span>
+        <span class="chase-ship chase-xwing">{% include ship-xwing.svg %}</span>
+        <span class="chase-bolt"></span>
+      </div>
+    </div>
   </div>
   <div class="about-intro">
     <span class="note note-about" aria-hidden="true">idea &rarr; plan &rarr; done</span>
