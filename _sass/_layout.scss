@@ -2491,7 +2491,7 @@ a.now-text:hover {
     path { vector-effect: non-scaling-stroke; }
 
     .js & path {
-        stroke-dasharray: 1;
+        stroke-dasharray: 1 2;
         stroke-dashoffset: 1;
         animation: draw-path 1.8s $ease-out 0.9s forwards;
     }
@@ -2535,7 +2535,7 @@ a.now-text:hover {
     path { vector-effect: non-scaling-stroke; }
 
     .js & path {
-        stroke-dasharray: 1;
+        stroke-dasharray: 1 2;
         stroke-dashoffset: 1;
         animation: draw-path 0.9s $ease-out 1.3s forwards;
     }
@@ -2561,7 +2561,7 @@ a.now-text:hover {
 
     path { vector-effect: non-scaling-stroke; }
 
-    .js & path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .js & path { stroke-dasharray: 1 2; stroke-dashoffset: 1; }
     .js &.is-drawn path { animation: draw-path 1s $ease-out 0.5s forwards; }
 }
 
@@ -2652,7 +2652,7 @@ a.now-text:hover {
         stroke-linejoin: round;
     }
 
-    .js & path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .js & path { stroke-dasharray: 1 2; stroke-dashoffset: 1; }
     .js &.is-drawn path { animation: draw-path 0.8s $ease-out 0.6s forwards; }
 
     @include media-query($on-laptop) {
@@ -2719,8 +2719,13 @@ a.now-text:hover {
     66%      { box-shadow: -18px 0 26px -4px rgba(95, 198, 255, 0.7), 18px 0 26px -4px rgba(255, 122, 92, 0.6); }
 }
 
-// Calligraphic JH monogram: a fine hairline for the whole signature, plus filled
-// swells on the downstrokes so it reads like pen pressure (thick down, thin up)
+// JH monogram, lettered with a simulated pointed pen (see _includes/monogram.svg).
+// Each stroke has a hairline "pen" centre line that writes itself, then its inked
+// outline (thick on the downstrokes) settles in. The J is the hero and is written
+// first; the H's crossbar and stem are added after. The header script restarts it
+// all (class .is-redrawing) on hover.
+$pen-pace: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+
 .monogram {
     display: block;
     width: 44px;
@@ -2730,35 +2735,45 @@ a.now-text:hover {
     .mono-line {
         fill: none;
         stroke: currentColor;
-        stroke-width: 1;
+        stroke-width: 0.62;
         stroke-linecap: round;
         stroke-linejoin: round;
     }
 
-    .mono-swell {
-        fill: currentColor;
-        stroke: none;
-    }
+    .mono-ink { fill: currentColor; }
 
     .js & .mono-line {
-        stroke-dasharray: 1;
+        stroke-dasharray: 1 2;
         stroke-dashoffset: 1;
-        animation: draw-path 1.4s $ease-out 0.2s forwards;
     }
 
-    .js & .mono-swell {
-        opacity: 0;
-        animation: swell-in 0.6s ease-out 1.1s forwards;
-    }
+    .js & .mono-ink { opacity: 0; }
+
+    // First load: the J, then the crossbar, then the H's stem
+    .js & .mono-j     { animation: draw-path 0.75s $pen-pace 0.1s forwards; }
+    .js & .mono-ink-j { animation: ink-in 0.35s ease-out 0.7s forwards; }
+    .js & .mono-x     { animation: draw-path 0.3s $pen-pace 0.88s forwards; }
+    .js & .mono-ink-x { animation: ink-in 0.3s ease-out 1.1s forwards; }
+    .js & .mono-h     { animation: draw-path 0.38s $pen-pace 1.2s forwards; }
+    .js & .mono-ink-h { animation: ink-in 0.35s ease-out 1.5s forwards; }
+
+    // Hover: the same order, a little quicker
+    .js &.is-redrawing .mono-j     { animation: draw-path 0.58s $pen-pace forwards; }
+    .js &.is-redrawing .mono-ink-j { animation: ink-in 0.3s ease-out 0.52s forwards; }
+    .js &.is-redrawing .mono-x     { animation: draw-path 0.24s $pen-pace 0.63s forwards; }
+    .js &.is-redrawing .mono-ink-x { animation: ink-in 0.25s ease-out 0.82s forwards; }
+    .js &.is-redrawing .mono-h     { animation: draw-path 0.3s $pen-pace 0.9s forwards; }
+    .js &.is-redrawing .mono-ink-h { animation: ink-in 0.3s ease-out 1.12s forwards; }
 }
 
-@keyframes swell-in {
-    to { opacity: 1; }
+@keyframes ink-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 .no-motion .monogram {
     .mono-line { stroke-dashoffset: 0; animation: none; }
-    .mono-swell { opacity: 1; animation: none; }
+    .mono-ink  { opacity: 1; animation: none; }
 }
 
 // Projects: analytics as a rising line chart (distinct from the music equalizer)
@@ -2781,7 +2796,7 @@ a.now-text:hover {
         stroke-width: 2.2;
         stroke-linecap: round;
         stroke-linejoin: round;
-        stroke-dasharray: 1;
+        stroke-dasharray: 1 2;
         stroke-dashoffset: 1;
         animation: chart-draw 4.5s $ease-out infinite;
     }

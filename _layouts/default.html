@@ -43,6 +43,17 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
 
+        // Re-sign the monogram each time the logo is hovered
+        var brand = document.querySelector('.brand');
+        var mono = brand && brand.querySelector('.monogram');
+        if (mono && !reduceMotion) {
+          brand.addEventListener('mouseenter', function() {
+            mono.classList.remove('is-redrawing');
+            mono.getBoundingClientRect();
+            mono.classList.add('is-redrawing');
+          });
+        }
+
         // Cursor spotlight on cards
         document.querySelectorAll('.spot').forEach(function(card) {
           card.addEventListener('pointermove', function(e) {
