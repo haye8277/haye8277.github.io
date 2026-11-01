@@ -28,7 +28,7 @@ permalink: /blog/
 {% for year in years %}
 <section class="year-group">
   {% assign year_num = year.name | plus: 0 %}
-  <h2 class="year-label">{{ year.name }}{% if year_num < 2020 %} <span class="year-note">Archive</span>{% endif %}</h2>
+  <h2 class="year-label">{{ year.name }}{% if year_num < 2020 %} <span class="year-note">Archive</span> <span class="note-inline" aria-hidden="true">the early days</span>{% endif %}</h2>
   <div class="blog-list">
     {% for post in year.items %}
     {% if post.url == latest.url %}{% continue %}{% endif %}

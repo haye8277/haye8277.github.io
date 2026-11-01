@@ -6,6 +6,7 @@ permalink: /about/
 
 <section class="page-hero about-hero">
   <div class="about-photo">
+    {% include sketch-arch.svg %}
     <div class="arch arch-small">
       <img src="{{ site.baseurl }}/assets/img/portrait.jpg" alt="Jacob Hayes" width="900" height="1127" fetchpriority="high">
     </div>
@@ -98,10 +99,10 @@ permalink: /about/
     <li>Customer care</li>
     <li>Creative</li>
     <li>Technical</li>
-    <li class="is-now">Leadership</li>
+    <li class="is-now">Leadership{% include scribble-circle.svg %}</li>
   </ol>
   <p>That mix is where the wide range of knowledge comes from. I understand the customer side, the creative side, the technical side and the business side, so when a problem cuts across a business, there's a good chance I've seen it from more than one angle.</p>
-  <p>None of that happened on my own. I've been lucky to work with a lot of people who were generous with what they knew, and I'm genuinely thankful to every one of them. A good part of what I bring to the table was passed along by them.</p>
+  <p class="has-margin-note">None of that happened on my own. I've been lucky to work with a lot of people who were generous with what they knew, and I'm genuinely thankful to every one of them. A good part of what I bring to the table was passed along by them.<span class="note-margin" aria-hidden="true">seriously, thank you</span></p>
   </div>
   </section>
 
@@ -128,5 +129,6 @@ permalink: /about/
     <h2>Currently employed, open to select projects.</h2>
     <p>If you're a small business that could use help with marketing, operations, or the next step, email me with a few details.</p>
   </div>
+  {% include lets-talk.html %}
   <a href="mailto:{{ site.email }}" class="btn btn-light">Get in touch <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
 </section>

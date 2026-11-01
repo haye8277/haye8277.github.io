@@ -81,6 +81,8 @@
             io.unobserve(el);
             var steps = el.closest('.steps');
             if (steps) steps.classList.add('is-drawn');
+            // hand-drawn bits draw themselves once their section shows up
+            el.querySelectorAll('.scribble-circle, .lets-talk').forEach(function(d) { d.classList.add('is-drawn'); });
             el.querySelectorAll('[data-count]').forEach(countUp);
             // Hand the element back to its own hover transitions once it has landed
             setTimeout(function() {

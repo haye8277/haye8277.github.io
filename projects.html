@@ -4,7 +4,10 @@ title: Projects
 permalink: /projects/
 ---
 
-{% assign build_post = site.posts | where: "slug", "what-ive-been-building" | first %}
+{% assign sale_post = site.posts | where: "slug", "sale-manager" | first %}
+{% assign analytics_post = site.posts | where: "slug", "analytics-tool" | first %}
+{% assign lights_post = site.posts | where: "slug", "lights-that-follow-the-screen" | first %}
+{% assign game_build_post = site.posts | where: "slug", "first-build-of-the-game" | first %}
 <section class="page-hero page-hero-noted">
   <span class="note note-page" aria-hidden="true">all built after hours</span>
   <!-- Every so often a dogfight zips across the top of the page -->
@@ -30,7 +33,7 @@ permalink: /projects/
       </div>
     </div>
     <div class="project-body">
-      <h2>Sale Manager</h2>
+      <h2>Sale Manager <span class="note-side" aria-hidden="true">the one I use every day</span></h2>
       <p class="project-lede">Scheduled, store-wide discounts that show on the product, not just in the cart.</p>
       <p>Most ecommerce platforms come with promotions built in, like buy one get one or spend-and-save offers. Those only kick in at the cart, once something's added or a condition is met. What they don't do well is a proper store-wide sale: set a specific discount across hundreds of products, show it right on the product page, and have it start and stop on schedule. That's what this does.</p>
       <ul class="project-points">
@@ -39,7 +42,7 @@ permalink: /projects/
         <li>Shown on the product itself, not hidden until checkout</li>
         <li>Scheduled to start and end automatically</li>
       </ul>
-      <a class="text-link" href="{{ build_post.url | prepend: site.baseurl }}#a-sale-manager-app">Read the write-up <span aria-hidden="true">&rarr;</span></a>
+      <a class="text-link" href="{{ sale_post.url | prepend: site.baseurl }}">Read the write-up <span aria-hidden="true">&rarr;</span></a>
     </div>
   </article>
 
@@ -60,7 +63,28 @@ permalink: /projects/
         <li>Deeper analysis than the built-in platform reports</li>
         <li>Store, web and social data side by side</li>
       </ul>
-      <a class="text-link" href="{{ build_post.url | prepend: site.baseurl }}#an-analytics-tool">Read the write-up <span aria-hidden="true">&rarr;</span></a>
+      <a class="text-link" href="{{ analytics_post.url | prepend: site.baseurl }}">Read the write-up <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </article>
+
+  <article class="project-card spot">
+    <div class="project-meta">
+      <span class="status-tag">Just for fun</span>
+      <div class="project-visual project-visual-tv" aria-hidden="true">
+        <span class="tv"><span class="tv-screen"></span></span>
+      </div>
+    </div>
+    <div class="project-body">
+      <h2>Hue TV Sync <span class="note-side" aria-hidden="true">movie nights, upgraded</span></h2>
+      <p class="project-lede">Smart lights that follow what's on screen.</p>
+      <p>A very simple app for a more cinematic night in. It records a tiny copy of the TV screen and sends the colours to the Philips Hue lights around it, so the room reacts to whatever's playing.</p>
+      <ul class="project-points">
+        <li>Uses screen recording to read the picture</li>
+        <li>Works with the Hue lighting ecosystem</li>
+        <li>Updates the lights many times a second</li>
+        <li>One button: on or off</li>
+      </ul>
+      <a class="text-link" href="{{ lights_post.url | prepend: site.baseurl }}">Read the write-up <span aria-hidden="true">&rarr;</span></a>
     </div>
   </article>
 
@@ -90,7 +114,8 @@ permalink: /projects/
     <div class="project-body">
       <h2>A passion project game</h2>
       <p class="project-lede">Big battles and strategy, built in Unity.</p>
-      <p>A third-person game with a heavy focus on large-scale battles and strategy. It's purely a passion project, something I chip away at for the fun of it.</p>
+      <p>A third-person game with a heavy focus on large-scale battles and strategy. It's purely a passion project, something I chip away at for the fun of it. The first build is done, and it's now being playtested by a few friends.</p>
+      <a class="text-link" href="{{ game_build_post.url | prepend: site.baseurl }}">Read the latest <span aria-hidden="true">&rarr;</span></a>
     </div>
   </article>
 
@@ -102,5 +127,6 @@ permalink: /projects/
     <h2>Need something similar?</h2>
     <p>Happy to talk through how these work, or whether a similar approach could help your business.</p>
   </div>
+  {% include lets-talk.html %}
   <a href="mailto:{{ site.email }}" class="btn btn-light">Get in touch <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
 </section>

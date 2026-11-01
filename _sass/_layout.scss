@@ -498,7 +498,17 @@ body::before {
         aspect-ratio: 0.8;
         object-fit: cover;
         object-position: 50% 20%;
-        filter: saturate(0.92) contrast(1.02);
+        // warmed slightly so the photo sits in the site's palette
+        filter: saturate(0.88) sepia(0.08) contrast(1.03);
+    }
+
+    // a soft terracotta wash rising from the bottom edge
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(196, 85, 59, 0.16), transparent 45%);
+        pointer-events: none;
     }
 }
 
@@ -1696,7 +1706,7 @@ body::before {
     }
 
     .hero-photo { max-width: none; justify-self: stretch; }
-    .hero-photo .arch { width: 190px; margin: 0 auto; }
+    .hero-photo .portrait { width: 190px; margin: 0 auto; }
 
     .fleet {
         display: flex;
@@ -2440,4 +2450,266 @@ a.now-text:hover {
     50%  { transform: translateX(-100px) scaleX(-1); }
     95%  { transform: translateX(0) scaleX(-1); }
     100% { transform: translateX(0) scaleX(1); }
+}
+
+
+
+/**
+ * More handwriting: sketches, scribbles and margin notes
+ */
+@keyframes draw-path {
+    to { stroke-dashoffset: 0; }
+}
+
+// Portrait wrapper so the sketch can sit just behind the photo
+.portrait {
+    position: relative;
+    isolation: isolate;
+}
+
+// A hand-drawn arch traced slightly offset behind each portrait
+.arch-sketch {
+    position: absolute;
+    z-index: -1;
+    top: 12px;
+    left: 12px;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+
+    path { vector-effect: non-scaling-stroke; }
+
+    .js & path {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        animation: draw-path 1.8s $ease-out 0.9s forwards;
+    }
+
+    @include media-query($on-palm) { top: 8px; left: 8px; }
+}
+
+.note-smile {
+    top: calc(100% + 10px);
+    left: 50%;
+    translate: -50% 0;
+    font-size: 22px;
+    rotate: -3deg;
+
+    .js & { animation-delay: 1.8s; }
+}
+
+// Scribbled underline under the key word in the headline
+.scribbled {
+    position: relative;
+}
+
+.hero-title .line:has(.scribbled) {
+    padding-bottom: 0.18em;
+    margin-bottom: -0.12em;
+}
+
+.scribble {
+    position: absolute;
+    left: -2%;
+    bottom: -0.1em;
+    width: 104%;
+    height: 0.22em;
+    overflow: visible;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    pointer-events: none;
+
+    path { vector-effect: non-scaling-stroke; }
+
+    .js & path {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        animation: draw-path 0.9s $ease-out 1.3s forwards;
+    }
+}
+
+// Hand-drawn circle around a word, drawn when it scrolls into view
+.career-path li { position: relative; }
+
+.scribble-circle {
+    position: absolute;
+    top: -9px;
+    bottom: -9px;
+    left: 4px;
+    right: -14px;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    pointer-events: none;
+
+    path { vector-effect: non-scaling-stroke; }
+
+    .js & path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .js &.is-drawn path { animation: draw-path 1s $ease-out 0.5s forwards; }
+}
+
+// Little handwritten asides that sit right after a heading
+.note-side,
+.note-inline {
+    display: inline-block;
+    margin-left: 12px;
+    font-family: $hand-font-family;
+    font-size: 22px;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: 1;
+    color: var(--accent);
+    vertical-align: middle;
+    rotate: -4deg;
+    white-space: nowrap;
+
+    @include media-query($on-palm) { font-size: 19px; }
+}
+
+.note-inline { margin-left: 2px; text-transform: none; }
+
+// Scribbled aside in the right margin of a paragraph
+.has-margin-note { position: relative; }
+
+.note-margin {
+    position: absolute;
+    left: calc(100% + 28px);
+    top: 6px;
+    font-family: $hand-font-family;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--accent);
+    white-space: nowrap;
+    rotate: -5deg;
+
+    @include media-query($on-laptop) {
+        position: static;
+        display: block;
+        margin-top: 8px;
+        rotate: -2deg;
+        transform-origin: left;
+    }
+}
+
+// "no bots, promise" scrawled beside the follower count
+.stat { position: relative; }
+
+.stat-note {
+    position: absolute;
+    top: -26px;
+    left: 140px;
+    font-family: $hand-font-family;
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+    rotate: -6deg;
+}
+
+// "let's talk!" with a doodled arrow down to the button
+.lets-talk {
+    position: absolute;
+    right: 84px;
+    bottom: 112px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-family: $hand-font-family;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1;
+    color: #ff9f84;
+    rotate: -6deg;
+    pointer-events: none;
+
+    svg {
+        width: 46px;
+        height: 36px;
+        margin-right: -6px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .js & path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .js &.is-drawn path { animation: draw-path 0.8s $ease-out 0.6s forwards; }
+
+    @include media-query($on-laptop) {
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: -18px;
+
+        svg { rotate: -40deg; margin: 0; }
+    }
+}
+
+// Without motion, show every drawing fully
+.no-motion {
+    .arch-sketch path, .scribble path, .scribble-circle path, .lets-talk path { stroke-dashoffset: 0; animation: none; }
+}
+
+// Projects: a little TV spilling shifting colour into the room
+.project-visual-tv {
+    background: #1b1d2a;
+}
+
+.tv {
+    position: relative;
+    display: block;
+    width: 64px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #3a3d4f;
+    background: #0f1018;
+    animation: tv-glow 6s linear infinite;
+
+    // the stand
+    &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -8px;
+        width: 20px;
+        height: 4px;
+        margin-left: -10px;
+        border-radius: 2px;
+        background: #3a3d4f;
+    }
+}
+
+.tv-screen {
+    position: absolute;
+    inset: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #ff7a5c, #ffcf6b, #5fc6ff, #b48cff, #ff7a5c);
+    background-size: 300% 100%;
+    animation: tv-picture 6s linear infinite;
+}
+
+@keyframes tv-picture {
+    to { background-position: 300% 0; }
+}
+
+@keyframes tv-glow {
+    0%, 100% { box-shadow: -18px 0 26px -4px rgba(255, 122, 92, 0.7), 18px 0 26px -4px rgba(95, 198, 255, 0.6); }
+    33%      { box-shadow: -18px 0 26px -4px rgba(255, 207, 107, 0.7), 18px 0 26px -4px rgba(180, 140, 255, 0.6); }
+    66%      { box-shadow: -18px 0 26px -4px rgba(95, 198, 255, 0.7), 18px 0 26px -4px rgba(255, 122, 92, 0.6); }
 }
