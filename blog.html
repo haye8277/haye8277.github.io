@@ -10,6 +10,19 @@ permalink: /blog/
   <p class="hero-tagline hero-in" style="--d: 2">Project updates and things worth writing down. Newest first.</p>
 </section>
 
+{% assign latest = site.posts.first %}
+{% assign latest_words = latest.content | number_of_words %}
+<a class="featured-post spot" href="{{ latest.url | prepend: site.baseurl }}">
+  <span class="note note-featured" aria-hidden="true">fresh off the press</span>
+  <div class="featured-meta">
+    <span class="section-index">Latest post</span>
+    <span class="featured-date">{{ latest.date | date: "%B %-d, %Y" }} &middot; {{ latest_words | divided_by: 200.0 | ceil }} min read</span>
+  </div>
+  <h2>{{ latest.title }}</h2>
+  <p>{{ latest.excerpt | strip_html | truncate: 220 }}</p>
+  <span class="btn btn-primary">Read it <span class="btn-arrow" aria-hidden="true">&rarr;</span></span>
+</a>
+
 {% assign years = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
 {% for year in years %}
 <section class="year-group">
@@ -17,6 +30,7 @@ permalink: /blog/
   <h2 class="year-label">{{ year.name }}{% if year_num < 2020 %} <span class="year-note">Archive</span>{% endif %}</h2>
   <div class="blog-list">
     {% for post in year.items %}
+    {% if post.url == latest.url %}{% continue %}{% endif %}
     <a class="blog-row" href="{{ post.url | prepend: site.baseurl }}">
       <span class="blog-row-date">{{ post.date | date: "%b %-d" }}</span>
       <span class="blog-row-body">

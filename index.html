@@ -5,7 +5,7 @@ title: Marketing, operations and product
 
 <section class="hero">
   <div class="hero-text">
-    <p class="eyebrow hero-in" style="--d: 0">Jacob Hayes &mdash; Marketing &amp; Operations</p>
+    <p class="eyebrow hero-in" style="--d: 0">Jacob Hayes &mdash; Problems solved with a smile</p>
     <h1 class="hero-title">
       <span class="line"><span class="hero-in" style="--d: 1">Marketing</span></span>
       <span class="line"><span class="hero-in" style="--d: 2">that actually</span></span>
@@ -13,7 +13,7 @@ title: Marketing, operations and product
       <span class="line"><span class="hero-in" style="--d: 4">with people.</span></span>
       <span class="note note-tools" aria-hidden="true">no fluff, no vanity metrics</span>
     </h1>
-    <p class="hero-tagline hero-in" style="--d: 5">Over ten years helping small businesses figure out what works, what doesn't, and how to keep things moving in the right direction.</p>
+    <p class="hero-tagline hero-in" style="--d: 5">Over ten years helping small businesses figure out what works, what doesn't, and how to keep things moving in the right direction. Serious about results, creative about getting there, and never boring along the way.</p>
     <div class="hero-cta hero-in" style="--d: 6">
       <a href="{{ site.baseurl }}/about/" class="btn btn-primary">About me <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
       <a href="{{ site.baseurl }}/projects/" class="btn btn-ghost">Projects</a>
@@ -52,7 +52,6 @@ title: Marketing, operations and product
     var fig = document.querySelector('.hero-photo');
     if (!fig || !fig.animate) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var wide = window.matchMedia('(min-width: 601px)');
 
     var layer = document.createElement('div');
     layer.className = 'battle';
@@ -117,10 +116,11 @@ title: Marketing, operations and product
     }
 
     function turn() {
-      if (onScreen && !document.hidden && wide.matches) {
+      if (onScreen && !document.hidden) {
         var side = Math.random() < 0.5 ? 'rebel' : 'empire';
         var shooter = pick(sides[side].shooters), target = pick(sides[side].targets);
-        if (shooter && target) {
+        // Skip anything not currently drawn (zero size) so bolts never fly from nowhere
+        if (shooter && target && shooter.getBoundingClientRect().width && target.getBoundingClientRect().width) {
           fire(shooter, target, side);
           if (Math.random() < 0.35) setTimeout(function() { fire(shooter, target, side); }, 150);
         }
@@ -135,7 +135,7 @@ title: Marketing, operations and product
 
 <div class="marquee" aria-label="Areas of focus">
   <div class="marquee-track">
-    {% assign focus = "Marketing management,Brand strategy,Scripts nobody asked for,Customer experience,E-commerce,Product development,IT management,Weird electronic music,Project management,Business consulting,Analytics" | split: "," %}
+    {% assign focus = "Marketing management,Problems solved with a smile,Brand strategy,Creative thinking,Scripts nobody asked for,Customer experience,E-commerce,Product development,IT management,Weird electronic music,Project management,Business consulting,Analytics" | split: "," %}
     {% for i in (1..2) %}
     <ul class="marquee-list"{% if i == 2 %} aria-hidden="true"{% endif %}>
       {% for item in focus %}<li>{{ item }}</li>{% endfor %}
@@ -273,7 +273,7 @@ title: Marketing, operations and product
   <div class="cta-text">
     <span class="section-index">Consulting</span>
     <h2>Have a project in mind?</h2>
-    <p>I take on a small number of consulting projects with small businesses: marketing, operations, or working out what comes next.</p>
+    <p>I take on a small number of consulting projects with small businesses: marketing, operations, or working out what comes next. Expect honest advice, creative ideas and a wide range of know-how, all delivered with a smile.</p>
   </div>
   <a href="mailto:{{ site.email }}" class="btn btn-light">Start a conversation <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
 </section>

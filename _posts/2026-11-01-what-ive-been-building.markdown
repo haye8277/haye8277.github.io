@@ -34,6 +34,6 @@ I'm not going to say much about it yet. It's still early, and I'd rather show it
 
 ## Building With New Tools
 
-One thing all three projects have in common is that I leaned heavily on AI tools to build them. I mentioned on the About page that I like the practical side of AI more than the hype, and these projects are a good example. Things that would have taken me months on my own came together in weeks, and I learned a lot along the way.
+One thing all three projects have in common is that I leaned heavily on modern development tools to build them. I like the practical side of new technology more than the hype, and these projects are a good example. Things that would have taken me months on my own came together in weeks, and I learned a lot along the way.
 
 I'll keep posting updates here as things progress. Thanks for reading!
