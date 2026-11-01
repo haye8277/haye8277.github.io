@@ -72,7 +72,7 @@
         }
 
         // Reveal elements as they scroll into view, staggered within each group
-        var targets = document.querySelectorAll('.section-head, .stat, .skill-card, .work-item, .post-card, .cta-block, .project-card, .blog-row, .year-label, .story-head, .story-body > *, .step, .featured-post, .post-content > *, .fact, .now-item, .signature');
+        var targets = document.querySelectorAll('.section-head, .stat, .skill-card, .work-item, .post-card, .cta-block, .project-card, .blog-row, .year-label, .story-head, .story-body > *, .career-path li, .step, .featured-post, .post-content > *, .fact, .now-item, .signature');
         var io = new IntersectionObserver(function(entries) {
           entries.forEach(function(entry) {
             if (!entry.isIntersecting) return;

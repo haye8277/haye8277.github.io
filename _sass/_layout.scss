@@ -658,20 +658,13 @@ body::before {
 
     h3 {
         font-size: 24px;
-        margin: 40px 0 10px;
+        margin: 0 0 10px;
         transition: transform 0.4s $ease-out;
     }
 
     p { color: var(--ink-soft); font-size: 15px; margin-bottom: 0; }
 
     &:hover h3 { transform: translateX(6px); }
-}
-
-.skill-num {
-    font-size: 12.5px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--accent);
 }
 
 
@@ -687,42 +680,21 @@ body::before {
 
 .work-item {
     display: grid;
-    grid-template-columns: 120px 1fr 1.3fr;
-    gap: 32px;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 40px;
     align-items: baseline;
     padding: 36px 0;
     border-bottom: 1px solid var(--line);
 
-    h3 { font-size: 26px; margin: 0; transition: color 0.3s ease; }
+    h3 { font-size: 26px; margin: 0; transition: color 0.3s ease, transform 0.4s $ease-out; }
     p { color: var(--ink-soft); margin: 0; }
 
-    &:hover {
-        h3 { color: var(--accent); }
-        .work-num { transform: translateX(8px); color: var(--accent); }
-    }
+    &:hover h3 { color: var(--accent); transform: translateX(6px); }
 
     @include media-query($on-laptop) {
-        grid-template-columns: 64px 1fr;
-
-        p { grid-column: 2; }
-    }
-
-    @include media-query($on-palm) {
         grid-template-columns: 1fr;
         gap: 10px;
-
-        p { grid-column: 1; }
     }
-}
-
-.work-num {
-    font-family: $heading-font-family;
-    font-style: italic;
-    font-size: 40px;
-    font-weight: 300;
-    line-height: 1;
-    color: var(--muted);
-    transition: transform 0.4s $ease-out, color 0.3s ease;
 }
 
 
@@ -2014,23 +1986,24 @@ a.now-text:hover {
         transform: translateY(-4px);
         box-shadow: var(--shadow-lift);
 
-        .step-num { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+        .step-doodle { rotate: -8deg; scale: 1.1; }
     }
 }
 
-.step-num {
+// Hand-drawn doodle in place of a step number
+.step-doodle {
     position: relative;
-    display: inline-grid;
-    place-items: center;
+    display: block;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--ink);
+    padding: 2px;
     background: var(--surface);
-    font-family: $heading-font-family;
-    font-style: italic;
-    font-size: 17px;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: rotate 0.45s $ease-spring, scale 0.45s $ease-spring;
 }
 
 // Little animated visual for each project
@@ -2222,4 +2195,51 @@ a.now-text:hover {
     margin: 16px 0 0;
     font-size: 17px;
     color: var(--ink-soft);
+}
+
+// About: the road from first job to now, as a trail of stops
+.career-path {
+    list-style: none;
+    margin: 8px 0 28px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 0;
+
+    li {
+        display: inline-flex;
+        align-items: center;
+        font-size: 14px;
+        line-height: 1.3;
+        color: var(--ink-soft);
+
+        &::before {
+            content: "";
+            flex: none;
+            width: 7px;
+            height: 7px;
+            margin-right: 8px;
+            border-radius: 50%;
+            border: 1.5px solid var(--muted);
+        }
+
+        // dashed trail to the next stop
+        &:not(:last-child)::after {
+            content: "";
+            width: 22px;
+            height: 1px;
+            margin: 0 10px;
+            background: repeating-linear-gradient(90deg, var(--muted) 0 3px, transparent 3px 6px);
+            opacity: 0.6;
+        }
+
+        &.is-now {
+            color: var(--ink);
+            font-weight: 600;
+
+            &::before { background: var(--accent); border-color: var(--accent); }
+        }
+
+        &:last-child::before { box-shadow: 0 0 0 4px var(--accent-glow); }
+    }
 }
