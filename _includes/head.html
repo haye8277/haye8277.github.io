@@ -1,6 +1,13 @@
 <head>
   <meta charset="utf-8">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    document.documentElement.classList.add('js');
+    // The header signs itself on the first page of a visit only
+    try {
+      if (sessionStorage.getItem('jh-intro')) document.documentElement.classList.add('intro-seen');
+      else sessionStorage.setItem('jh-intro', '1');
+    } catch (e) {}
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f7fafb" media="(prefers-color-scheme: light)">

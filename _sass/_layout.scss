@@ -203,12 +203,17 @@ body::after {
     gap: 16px;
 }
 
-// Brand lockup: monogram | fine rule | name. The monogram's box is cropped to its
-// ink, so it fills its spot and its left edge lines up with the page content.
+// Brand lockup: script monogram | rule at the monogram's slant | spaced roman capitals.
+// The monogram's box is cropped to its ink, so it fills its spot and its left edge
+// lines up with the page content. On the first page of a visit the mark signs itself,
+// the rule draws in and the name settles into place; later pages show it at rest
+// (html.intro-seen, set in head.html).
+$brand-slant: -13.5deg;
+
 .brand {
     display: inline-flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
     line-height: 1;
     color: var(--ink);
 
@@ -216,10 +221,8 @@ body::after {
         text-decoration: none;
         color: var(--ink);
 
-        .brand-mark {
-            color: var(--accent);
-            transform: rotate(-5deg) scale(1.06);
-        }
+        .brand-mark { color: var(--accent); }
+        .brand-name { letter-spacing: 0.28em; }
     }
 }
 
@@ -227,26 +230,48 @@ body::after {
     flex: none;
     display: block;
     color: var(--ink);
-    transition: transform 0.45s $ease-spring, color 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 .brand-rule {
     flex: none;
-    width: 1px;
-    height: 28px;
+    width: 1.2px;
+    height: 34px;
     background: var(--muted);
-    opacity: 0.45;
+    opacity: 0.55;
+    transform: skewX($brand-slant);
     transition: height 0.35s $ease-out;
 
-    .site-header.scrolled & { height: 22px; }
+    .site-header.scrolled & { height: 26px; }
+
+    .js & { animation: rule-in 0.6s $ease-out 1.25s backwards; }
 }
 
 .brand-name {
     font-family: $heading-font-family;
+    font-variation-settings: "opsz" 72;
     font-weight: 400;
-    font-size: 21px;
+    font-size: 15px;
     line-height: 1;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.24em;
+    margin-right: -0.24em; // trailing tracking shouldn't widen the lockup
+    text-transform: uppercase;
+    transition: letter-spacing 0.6s $ease-out;
+
+    .js & { animation: name-in 0.9s $ease-out 1.4s backwards; }
+}
+
+@keyframes rule-in {
+    from { opacity: 0; transform: skewX($brand-slant) scaleY(0); }
+}
+
+@keyframes name-in {
+    from { opacity: 0; letter-spacing: 0.5em; filter: blur(2px); }
+}
+
+// Later pages in the same visit: the lockup is already at rest
+.intro-seen {
+    .brand-rule, .brand-name { animation: none; }
 }
 
 .site-nav {
@@ -2780,18 +2805,30 @@ $pen-pace: cubic-bezier(0.45, 0.05, 0.55, 0.95);
     .js & .mono-h     { animation: draw-path 0.38s $pen-pace 1.2s forwards; }
     .js & .mono-ink-h { animation: ink-in 0.35s ease-out 1.5s forwards; }
 
-    // Hover: the same order, a little quicker
-    .js &.is-redrawing .mono-j     { animation: draw-path 0.58s $pen-pace forwards; }
-    .js &.is-redrawing .mono-ink-j { animation: ink-in 0.3s ease-out 0.52s forwards; }
-    .js &.is-redrawing .mono-x     { animation: draw-path 0.24s $pen-pace 0.63s forwards; }
-    .js &.is-redrawing .mono-ink-x { animation: ink-in 0.25s ease-out 0.82s forwards; }
-    .js &.is-redrawing .mono-h     { animation: draw-path 0.3s $pen-pace 0.9s forwards; }
-    .js &.is-redrawing .mono-ink-h { animation: ink-in 0.3s ease-out 1.12s forwards; }
+    // Hover: the same order, a little quicker (redraw-path always starts from blank,
+    // so it also works on pages where the mark was shown already at rest)
+    .js &.is-redrawing .mono-j     { animation: redraw-path 0.58s $pen-pace both; }
+    .js &.is-redrawing .mono-ink-j { animation: ink-in 0.3s ease-out 0.52s both; }
+    .js &.is-redrawing .mono-x     { animation: redraw-path 0.24s $pen-pace 0.63s both; }
+    .js &.is-redrawing .mono-ink-x { animation: ink-in 0.25s ease-out 0.82s both; }
+    .js &.is-redrawing .mono-h     { animation: redraw-path 0.3s $pen-pace 0.9s both; }
+    .js &.is-redrawing .mono-ink-h { animation: ink-in 0.3s ease-out 1.12s both; }
 }
 
 @keyframes ink-in {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+@keyframes redraw-path {
+    from { stroke-dashoffset: 1; }
+    to   { stroke-dashoffset: 0; }
+}
+
+// Later pages in the same visit: the signature is already written
+.intro-seen .monogram {
+    .mono-line { stroke-dashoffset: 0; animation: none; }
+    .mono-ink  { opacity: 1; animation: none; }
 }
 
 .no-motion .monogram {
