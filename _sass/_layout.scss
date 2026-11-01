@@ -2219,9 +2219,9 @@ a.now-text:hover {
         // dashed trail to the next stop
         &:not(:last-child)::after {
             content: "";
-            width: 22px;
+            width: 12px;
             height: 1px;
-            margin: 0 10px;
+            margin: 0 7px;
             background: repeating-linear-gradient(90deg, var(--muted) 0 3px, transparent 3px 6px);
             opacity: 0.6;
         }

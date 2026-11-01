@@ -17,7 +17,7 @@ permalink: /projects/
   </div>
   <p class="eyebrow hero-in" style="--d: 0">Projects</p>
   <h1 class="page-title hero-in" style="--d: 1">Tools built from <em>real</em> problems.</h1>
-  <p class="hero-tagline hero-in" style="--d: 2">Each of these started as "there has to be an easier way" at work. Built in evenings, with modern tools that make a one-person team a lot faster.</p>
+  <p class="hero-tagline hero-in" style="--d: 2">Most of these started as "there has to be an easier way" at work. Built in evenings, with modern tools that make a one-person team a lot faster.</p>
 </section>
 
 <div class="project-list">
@@ -31,13 +31,13 @@ permalink: /projects/
     </div>
     <div class="project-body">
       <h2>Sale Manager</h2>
-      <p class="project-lede">Scheduling and running sales across multiple online stores from a single screen.</p>
-      <p>Running a sale across several stores used to mean a spreadsheet, a lot of clicking, and a reminder to switch everything back. This app handles it end to end.</p>
+      <p class="project-lede">Scheduled, store-wide discounts that show on the product, not just in the cart.</p>
+      <p>Most ecommerce platforms come with promotions built in, like buy one get one or spend-and-save offers. Those only kick in at the cart, once something's added or a condition is met. What they don't do well is a proper store-wide sale: set a specific discount across hundreds of products, show it right on the product page, and have it start and stop on schedule. That's what this does.</p>
       <ul class="project-points">
-        <li>Connects to multiple stores, each in its own currency</li>
-        <li>Sale prices, automatic cart discounts or generated coupon codes</li>
-        <li>Scheduled start and end times in any time zone, applied and reverted automatically</li>
-        <li>Concurrent sales without conflicts</li>
+        <li>Percentage off, an amount off, or a set sale price</li>
+        <li>Applied in bulk, including straight from a CSV file</li>
+        <li>Shown on the product itself, not hidden until checkout</li>
+        <li>Scheduled to start and end automatically</li>
       </ul>
       <a class="text-link" href="{{ build_post.url | prepend: site.baseurl }}#a-sale-manager-app">Read the write-up <span aria-hidden="true">&rarr;</span></a>
     </div>
@@ -52,36 +52,21 @@ permalink: /projects/
     </div>
     <div class="project-body">
       <h2>Analytics Tool</h2>
-      <p class="project-lede">One view of the business, instead of five dashboards.</p>
-      <p>Sales, traffic and social performance normally live in separate tools. This pulls them together so a post or campaign can be traced through to traffic and revenue.</p>
+      <p class="project-lede">Getting more out of the data a business already has.</p>
+      <p>Platforms give you their own reports, but they only go so deep. This tool brings the data together so it can be reviewed properly: compared across a range of factors, used to track real return on investment, and dug into in ways the standard dashboards just don't offer.</p>
       <ul class="project-points">
-        <li>Store data from the ecommerce platform</li>
-        <li>Website traffic from Google Analytics</li>
-        <li>Social media performance, side by side with the rest</li>
+        <li>Compare performance across lots of different factors</li>
+        <li>Track ROI on campaigns and spend</li>
+        <li>Deeper analysis than the built-in platform reports</li>
+        <li>Store, web and social data side by side</li>
       </ul>
       <a class="text-link" href="{{ build_post.url | prepend: site.baseurl }}#an-analytics-tool">Read the write-up <span aria-hidden="true">&rarr;</span></a>
     </div>
   </article>
 
-  <article class="project-card spot project-secret">
-    <div class="project-meta">
-      <span class="status-tag status-secret">Unannounced</span>
-      <div class="project-visual project-visual-space" aria-hidden="true">
-        <span class="stars"></span>
-        <span class="drifter">{% include ship-xwing.svg %}</span>
-      </div>
-    </div>
-    <div class="project-body">
-      <h2>A video game called {% include redacted.html %}</h2>
-      <p class="project-lede">Something completely different.</p>
-      <p>Still early, and better shown than described. More when it's ready.</p>
-      <a class="text-link" href="{{ build_post.url | prepend: site.baseurl }}#and-a-video-game">Read the teaser <span aria-hidden="true">&rarr;</span></a>
-    </div>
-  </article>
-
   <article class="project-card spot">
     <div class="project-meta">
-      <span class="status-tag">Ongoing</span>
+      <span class="status-tag">Just for fun</span>
       <div class="project-visual tint-lilac" aria-hidden="true">
         <span class="eq eq-big"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
       </div>
@@ -91,6 +76,21 @@ permalink: /projects/
       <p class="project-lede">Experimental electronic music.</p>
       <p>Dark, ambient and hard to categorise. No formal training, lately with some newer production tools in the mix.</p>
       <a class="text-link" href="https://soundcloud.com/knee-jar" target="_blank" rel="noopener">Listen on SoundCloud <span aria-hidden="true">&#8599;</span></a>
+    </div>
+  </article>
+
+  <article class="project-card spot">
+    <div class="project-meta">
+      <span class="status-tag">Just for fun</span>
+      <div class="project-visual project-visual-space" aria-hidden="true">
+        <span class="stars"></span>
+        <span class="drifter">{% include ship-xwing.svg %}</span>
+      </div>
+    </div>
+    <div class="project-body">
+      <h2>A passion project game</h2>
+      <p class="project-lede">Big battles and strategy, built in Unity.</p>
+      <p>A third-person game with a heavy focus on large-scale battles and strategy. It's purely a passion project, something I chip away at for the fun of it.</p>
     </div>
   </article>
 
