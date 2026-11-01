@@ -1,0 +1,88 @@
+---
+layout: default
+title: Projects
+permalink: /projects/
+---
+
+{% assign build_post = site.posts | where: "slug", "what-ive-been-building" | first %}
+<section class="page-hero">
+  <p class="eyebrow hero-in" style="--d: 0">Projects</p>
+  <h1 class="page-title hero-in" style="--d: 1">Tools built from <em>real</em> problems.</h1>
+  <p class="hero-tagline hero-in" style="--d: 2">Each of these started as "there has to be an easier way" at work. Built in evenings, with a lot of help from AI tools.</p>
+</section>
+
+<div class="project-list">
+
+  <article class="project-card spot">
+    <div class="project-meta">
+      <span class="project-num">01</span>
+      <span class="status-tag status-live">In daily use</span>
+    </div>
+    <div class="project-body">
+      <h2>Sale Manager</h2>
+      <p class="project-lede">Scheduling and running sales across multiple online stores from a single screen.</p>
+      <p>Running a sale across several stores used to mean a spreadsheet, a lot of clicking, and a reminder to switch everything back. This app handles it end to end.</p>
+      <ul class="project-points">
+        <li>Connects to multiple stores, each in its own currency</li>
+        <li>Sale prices, automatic cart discounts or generated coupon codes</li>
+        <li>Scheduled start and end times in any time zone, applied and reverted automatically</li>
+        <li>Concurrent sales without conflicts</li>
+      </ul>
+      <a class="text-link" href="{{ build_post.url | prepend: site.baseurl }}#a-sale-manager-app">Read the write-up <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </article>
+
+  <article class="project-card spot">
+    <div class="project-meta">
+      <span class="project-num">02</span>
+      <span class="status-tag status-growing">In development</span>
+    </div>
+    <div class="project-body">
+      <h2>Analytics Tool</h2>
+      <p class="project-lede">One view of the business, instead of five dashboards.</p>
+      <p>Sales, traffic and social performance normally live in separate tools. This pulls them together so a post or campaign can be traced through to traffic and revenue.</p>
+      <ul class="project-points">
+        <li>Store data from the ecommerce platform</li>
+        <li>Website traffic from Google Analytics</li>
+        <li>Social media performance, side by side with the rest</li>
+      </ul>
+      <a class="text-link" href="{{ build_post.url | prepend: site.baseurl }}#an-analytics-tool">Read the write-up <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </article>
+
+  <article class="project-card spot project-secret">
+    <div class="project-meta">
+      <span class="project-num">03</span>
+      <span class="status-tag status-secret">Unannounced</span>
+    </div>
+    <div class="project-body">
+      <h2>A video game called {% include redacted.html %}</h2>
+      <p class="project-lede">Something completely different.</p>
+      <p>Still early, and better shown than described. More when it's ready.</p>
+      <a class="text-link" href="{{ build_post.url | prepend: site.baseurl }}#and-a-video-game">Read the teaser <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </article>
+
+  <article class="project-card spot">
+    <div class="project-meta">
+      <span class="project-num">04</span>
+      <span class="status-tag">Ongoing</span>
+    </div>
+    <div class="project-body">
+      <h2>Knee Jar</h2>
+      <p class="project-lede">Experimental electronic music.</p>
+      <p>Dark, ambient and hard to categorise. No formal training, lately with some AI production tools in the mix.</p>
+      <a class="text-link" href="https://soundcloud.com/knee-jar" target="_blank" rel="noopener">Listen on SoundCloud <span aria-hidden="true">&#8599;</span></a>
+    </div>
+  </article>
+
+</div>
+
+<section class="cta-block">
+  <div class="cta-text">
+    <span class="section-index">Consulting</span>
+    <h2>Need something similar?</h2>
+    <p>Happy to talk through how these work, or whether a similar approach could help your business.</p>
+  </div>
+  <a href="mailto:{{ site.email }}" class="btn btn-light">Get in touch <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+</section>

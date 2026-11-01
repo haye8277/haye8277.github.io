@@ -1,0 +1,31 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+
+<section class="page-hero">
+  <p class="eyebrow hero-in" style="--d: 0">Blog</p>
+  <h1 class="page-title hero-in" style="--d: 1">Notes &amp; <em>updates</em>.</h1>
+  <p class="hero-tagline hero-in" style="--d: 2">Project updates and things worth writing down. Newest first.</p>
+</section>
+
+{% assign years = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% for year in years %}
+<section class="year-group">
+  {% assign year_num = year.name | plus: 0 %}
+  <h2 class="year-label">{{ year.name }}{% if year_num < 2020 %} <span class="year-note">Archive</span>{% endif %}</h2>
+  <div class="blog-list">
+    {% for post in year.items %}
+    <a class="blog-row" href="{{ post.url | prepend: site.baseurl }}">
+      <span class="blog-row-date">{{ post.date | date: "%b %-d" }}</span>
+      <span class="blog-row-body">
+        <span class="blog-row-title">{{ post.title }}</span>
+        {% if post.excerpt %}<span class="blog-row-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</span>{% endif %}
+      </span>
+      <span class="blog-row-arrow" aria-hidden="true">&rarr;</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endfor %}

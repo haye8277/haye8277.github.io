@@ -1,14 +1,18 @@
 ---
 layout: default
 ---
+{% assign words = content | number_of_words %}
+{% assign minutes = words | divided_by: 200.0 | ceil %}
 <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
 
   <header class="post-header">
-    <a class="post-back-link" href="{{ site.baseurl }}/blog/">&larr; Back to Blog</a>
-    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+    <a class="back-link hero-in" style="--d: 0" href="{{ site.baseurl }}/blog/">&larr; All posts</a>
+    <h1 class="post-title hero-in" style="--d: 1" itemprop="name headline">{{ page.title }}</h1>
     <p class="post-meta">
       <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %-d, %Y" }}</time>
-      {% if page.author %} &middot; <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}
+      <span class="meta-dot" aria-hidden="true"></span>
+      <span>{{ minutes }} min read</span>
+      <meta itemprop="author" content="Jacob Hayes">
     </p>
   </header>
 
@@ -17,7 +21,25 @@ layout: default
   </div>
 
   <footer class="post-footer">
-    <a class="post-back-link" href="{{ site.baseurl }}/blog/">&larr; Back to Blog</a>
+    <div class="post-signoff">
+      <img src="{{ site.baseurl }}/assets/img/profile.jpg" alt="" width="52" height="52">
+      <p><strong>Jacob Hayes</strong><br>Marketing, operations and product. <a href="mailto:{{ site.email }}">Get in touch</a></p>
+    </div>
+
+    <nav class="post-nav" aria-label="More posts">
+      {% if page.previous %}
+      <a class="post-nav-card" href="{{ page.previous.url | prepend: site.baseurl }}">
+        <span class="post-nav-label">&larr; Older</span>
+        <span class="post-nav-title">{{ page.previous.title }}</span>
+      </a>
+      {% else %}<span></span>{% endif %}
+      {% if page.next %}
+      <a class="post-nav-card post-nav-next" href="{{ page.next.url | prepend: site.baseurl }}">
+        <span class="post-nav-label">Newer &rarr;</span>
+        <span class="post-nav-title">{{ page.next.title }}</span>
+      </a>
+      {% endif %}
+    </nav>
   </footer>
 
 </article>

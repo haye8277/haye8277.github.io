@@ -1,175 +1,279 @@
 ---
 layout: default
-title: Meet Kneejar
+title: Marketing, operations and product
 ---
 
-<div class="ri-hero">
-  <div class="ri-hero-inner">
-    <div class="ri-eyebrow">Solving Problems with a Smile!</div>
-    <h1 class="ri-name">Jacob Hayes.</h1>
-    <p class="ri-tagline">I've spent the last 10+ years working with small businesses — figuring out what works, what doesn't, and how to keep things moving in the right direction.</p>
-    <div class="ri-status">
-      <span class="status-dot"></span>
-      Currently employed &mdash; not looking, but <strong>happy to chat about consulting.</strong>
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow hero-in" style="--d: 0">Jacob Hayes &mdash; Marketing &amp; Operations</p>
+    <h1 class="hero-title">
+      <span class="line"><span class="hero-in" style="--d: 1">Marketing</span></span>
+      <span class="line"><span class="hero-in" style="--d: 2">that actually</span></span>
+      <span class="line"><span class="hero-in" style="--d: 3"><em>connects</em></span></span>
+      <span class="line"><span class="hero-in" style="--d: 4">with people.</span></span>
+      <span class="note note-tools" aria-hidden="true">no fluff, no vanity metrics</span>
+    </h1>
+    <p class="hero-tagline hero-in" style="--d: 5">Over ten years helping small businesses figure out what works, what doesn't, and how to keep things moving in the right direction.</p>
+    <div class="hero-cta hero-in" style="--d: 6">
+      <a href="{{ site.baseurl }}/about/" class="btn btn-primary">About me <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+      <a href="{{ site.baseurl }}/projects/" class="btn btn-ghost">Projects</a>
     </div>
-    <div class="ri-cta">
-      <a href="{{ site.baseurl }}/about/" class="btn btn-light">About Me</a>
-      <a href="mailto:{{ site.email }}" class="btn btn-outline-light">Get in Touch</a>
+    <p class="status-line hero-in" style="--d: 7">
+      <span class="status-dot" aria-hidden="true"></span>
+      Currently employed &middot; open to select consulting work
+    </p>
+  </div>
+
+  <figure class="hero-photo">
+    <div class="arch">
+      <img src="{{ site.baseurl }}/assets/img/portrait.jpg" alt="Jacob Hayes" width="900" height="1127" fetchpriority="high">
     </div>
+    <!-- A small galaxy of roles, each with its own doodle from a long time ago -->
+    <figcaption>
+      <ul class="fleet" aria-label="Roles">
+        <li class="flyer flyer-1">{% include ship-xwing.svg %}<span>Marketing</span></li>
+        <li class="flyer flyer-2">{% include ship-droid.svg %}<span>Project Management</span></li>
+        <li class="flyer flyer-3">{% include ship-freighter.svg %}<span>Product Development</span></li>
+        <li class="flyer flyer-4">{% include ship-saber.svg %}<span>Customer Experience</span></li>
+        <li class="flyer flyer-5">{% include ship-tie.svg %}<span>Developer</span></li>
+        <li class="flyer flyer-6">{% include ship-station.svg %}<span>Music Maker</span></li>
+      </ul>
+    </figcaption>
+    <svg class="orbit" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="none" stroke="currentColor" stroke-width="0.6" stroke-dasharray="2 6"/></svg>
+    <div class="orbit-ship" aria-hidden="true">{% include ship-tie.svg %}</div>
+  </figure>
+</section>
+
+<script>
+  // A tiny space battle between the icons around the portrait.
+  // Rebels (X-wing, freighter) fire red; the Empire (TIEs, station) fires green.
+  // The lightsaber deflects, the droid just takes it.
+  (function() {
+    var fig = document.querySelector('.hero-photo');
+    if (!fig || !fig.animate) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var wide = window.matchMedia('(min-width: 601px)');
+
+    var layer = document.createElement('div');
+    layer.className = 'battle';
+    layer.setAttribute('aria-hidden', 'true');
+    fig.appendChild(layer);
+
+    var sides = {
+      rebel:  { shooters: ['.flyer-1 .ship', '.flyer-3 .ship'],
+                targets:  ['.flyer-5 .ship', '.flyer-6 .ship', '.orbit-ship .ship'] },
+      empire: { shooters: ['.flyer-5 .ship', '.flyer-6 .ship', '.orbit-ship .ship'],
+                targets:  ['.flyer-1 .ship', '.flyer-2 .ship', '.flyer-3 .ship', '.flyer-4 .ship'] }
+    };
+
+    function pick(list) { return fig.querySelector(list[Math.floor(Math.random() * list.length)]); }
+
+    function centre(el) {
+      var r = el.getBoundingClientRect(), f = fig.getBoundingClientRect();
+      return { x: r.left + r.width / 2 - f.left, y: r.top + r.height / 2 - f.top };
+    }
+
+    function burst(p, deflect) {
+      var spark = document.createElement('span');
+      spark.className = 'spark' + (deflect ? ' spark-deflect' : '');
+      spark.style.left = p.x + 'px';
+      spark.style.top = p.y + 'px';
+      layer.appendChild(spark);
+      setTimeout(function() { spark.remove(); }, 500);
+    }
+
+    function hit(target) {
+      var deflect = target.classList.contains('ship-saber');
+      burst(centre(target), deflect);
+      if (deflect) return;
+      target.classList.add('is-hit');
+      setTimeout(function() { target.classList.remove('is-hit'); }, 400);
+    }
+
+    function fire(from, to, side) {
+      var a = centre(from), b = centre(to);
+      var dx = b.x - a.x, dy = b.y - a.y;
+      var angle = Math.atan2(dy, dx) * 180 / Math.PI;
+      var bolt = document.createElement('span');
+      bolt.className = 'bolt bolt-' + side;
+      bolt.style.left = a.x + 'px';
+      bolt.style.top = a.y + 'px';
+      layer.appendChild(bolt);
+      var duration = Math.max(260, Math.hypot(dx, dy) * 1.2);
+      bolt.animate([
+        { transform: 'translate(0, 0) rotate(' + angle + 'deg)' },
+        { transform: 'translate(' + dx + 'px, ' + dy + 'px) rotate(' + angle + 'deg)' }
+      ], { duration: duration, easing: 'linear', fill: 'forwards' });
+      // A timer rather than onfinish, so a stalled animation can never leave bolts behind
+      setTimeout(function() {
+        bolt.remove();
+        hit(to);
+      }, duration);
+    }
+
+    var onScreen = true;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries) { onScreen = entries[0].isIntersecting; }).observe(fig);
+    }
+
+    function turn() {
+      if (onScreen && !document.hidden && wide.matches) {
+        var side = Math.random() < 0.5 ? 'rebel' : 'empire';
+        var shooter = pick(sides[side].shooters), target = pick(sides[side].targets);
+        if (shooter && target) {
+          fire(shooter, target, side);
+          if (Math.random() < 0.35) setTimeout(function() { fire(shooter, target, side); }, 150);
+        }
+      }
+      setTimeout(turn, 900 + Math.random() * 1100);
+    }
+
+    // Let the fleet finish flying in before the shooting starts
+    setTimeout(turn, 2600);
+  })();
+</script>
+
+<div class="marquee" aria-label="Areas of focus">
+  <div class="marquee-track">
+    {% assign focus = "Marketing management,Brand strategy,Scripts nobody asked for,Customer experience,E-commerce,Product development,IT management,Weird electronic music,Project management,Business consulting,Analytics" | split: "," %}
+    {% for i in (1..2) %}
+    <ul class="marquee-list"{% if i == 2 %} aria-hidden="true"{% endif %}>
+      {% for item in focus %}<li>{{ item }}</li>{% endfor %}
+    </ul>
+    {% endfor %}
   </div>
 </div>
 
-<div class="ri-stats">
-  <div class="ri-stat">
-    <div class="ri-stat-top">
-      <div class="ri-stat-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-      </div>
-      <span class="ri-stat-number">All<span class="ri-stat-plus"> Organic</span></span>
-    </div>
-    <span class="ri-stat-label">No shortcuts. Just real content, real connections, and growth built the honest way.</span>
+<section class="now" aria-label="Right now">
+  <p class="now-label">Right now</p>
+  <div class="now-item">
+    <span class="now-kicker">Day job</span>
+    <span class="now-text">Marketing and e-commerce, with a lot of moving parts</span>
   </div>
-  <div class="ri-stat">
-    <div class="ri-stat-top">
-      <div class="ri-stat-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      </div>
-      <span class="ri-stat-number">100K<span class="ri-stat-plus">+</span></span>
-    </div>
-    <span class="ri-stat-label">Followers built the old-fashioned way.</span>
+  <div class="now-item">
+    <span class="now-kicker">Making</span>
+    <a class="now-text" href="https://soundcloud.com/knee-jar" target="_blank" rel="noopener">Dark, ambient music as Knee Jar <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></a>
   </div>
-  <div class="ri-stat">
-    <div class="ri-stat-top">
-      <div class="ri-stat-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-      </div>
-      <span class="ri-stat-number">0<span class="ri-stat-plus"> → 1M+</span></span>
-    </div>
-    <span class="ri-stat-label">Monthly views, starting from scratch.</span>
+  <div class="now-item">
+    <span class="now-kicker">Secretly making</span>
+    <span class="now-text">A video game called {% include redacted.html %}</span>
   </div>
-</div>
+</section>
 
-<div class="ri-section">
-  <div class="ri-section-header">
-    <h2>What I Work On</h2>
+<section class="stats" aria-label="By the numbers">
+  <div class="stat">
+    <span class="stat-number"><span data-count="100">100</span>K+</span>
+    <span class="stat-label">Followers built organically, without paid shortcuts.</span>
   </div>
-  <div class="ri-skills">
+  <div class="stat">
+    <span class="stat-number">0&thinsp;&rarr;&thinsp;1M+</span>
+    <span class="stat-label">Monthly views, grown from scratch.</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">3</span>
+    <span class="stat-label">Brands taken from launch to meaningful revenue at the same time.</span>
+  </div>
+</section>
 
-    <div class="ri-skill-card">
-      <div class="ri-skill-top">
-        <div class="ri-skill-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <span class="ri-skill-num">01</span>
-      </div>
+<section class="section">
+  <div class="section-head">
+    <span class="section-index">01 &mdash; Expertise</span>
+    <h2>What I work on</h2>
+  </div>
+  <div class="skill-grid">
+
+    <div class="skill-card spot">
+      <span class="skill-num">01</span>
       <h3>Marketing Management</h3>
-      <p>Strategy, planning, and getting things out the door. I like marketing that actually connects with people, not just checks a box.</p>
+      <p>Strategy, planning, and getting things out the door. Marketing that connects with people, not marketing that checks a box.</p>
     </div>
 
-    <div class="ri-skill-card">
-      <div class="ri-skill-top">
-        <div class="ri-skill-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <span class="ri-skill-num">02</span>
-      </div>
+    <div class="skill-card spot">
+      <span class="skill-num">02</span>
       <h3>Customer Experience</h3>
-      <p>Making sure customers actually enjoy the ride. From the first impression to long after the sale, it matters more than most people think.</p>
+      <p>From the first impression to long after the sale. It matters more than most businesses think.</p>
     </div>
 
-    <div class="ri-skill-card">
-      <div class="ri-skill-top">
-        <div class="ri-skill-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <span class="ri-skill-num">03</span>
-      </div>
+    <div class="skill-card spot">
+      <span class="skill-num">03</span>
       <h3>Brand Management</h3>
       <p>Helping businesses figure out who they are and how to show up consistently. A clear brand makes everything else easier.</p>
     </div>
 
-    <div class="ri-skill-card">
-      <div class="ri-skill-top">
-        <div class="ri-skill-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
-        <span class="ri-skill-num">04</span>
-      </div>
+    <div class="skill-card spot">
+      <span class="skill-num">04</span>
       <h3>IT Management</h3>
-      <p>Keeping the tech side of things running and making sure the tools actually serve the people using them. I speak both languages.</p>
+      <p>Keeping the tech side running and making sure the tools actually serve the people using them.</p>
     </div>
 
-    <div class="ri-skill-card">
-      <div class="ri-skill-top">
-        <div class="ri-skill-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
-        </div>
-        <span class="ri-skill-num">05</span>
-      </div>
+    <div class="skill-card spot">
+      <span class="skill-num">05</span>
       <h3>Business Consulting</h3>
-      <p>Sometimes you just need a fresh set of eyes. I've worked with enough small businesses to spot the patterns and help cut through the noise.</p>
+      <p>A fresh set of eyes. Enough small businesses behind me to spot the patterns and cut through the noise.</p>
     </div>
 
-    <div class="ri-skill-card">
-      <div class="ri-skill-top">
-        <div class="ri-skill-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        </div>
-        <span class="ri-skill-num">06</span>
-      </div>
+    <div class="skill-card spot">
+      <span class="skill-num">06</span>
       <h3>Project Management</h3>
-      <p>Keeping projects on track and teams aligned. I like having a lot of moving parts — it's where I tend to do my best work.</p>
+      <p>Keeping projects on track and teams aligned. Lots of moving parts is where I do my best work.</p>
     </div>
 
   </div>
-</div>
+</section>
 
-<div class="ri-section">
-  <div class="ri-section-header">
-    <h2>A Few Things I'm Proud Of</h2>
+<section class="section">
+  <div class="section-head">
+    <span class="section-index">02 &mdash; Highlights</span>
+    <h2>Selected work</h2>
   </div>
-  <div class="ri-highlights">
+  <ol class="work-list">
 
-    <div class="ri-highlight-card">
-      <div class="ri-highlight-num">01</div>
-      <div class="ri-highlight-content">
-        <h3>Product Launch at an Industry Convention</h3>
-        <p>Helped take a product from early concept all the way through to launch — working closely with the design team along the way. We brought it to an industry convention and presented it in front of around 1,000 people. It went over really well — well enough that folks were stepping out of the event to go pick one up.</p>
-      </div>
+    <li class="work-item">
+      <span class="work-num" aria-hidden="true">01</span>
+      <h3>Product launch at an industry convention</h3>
+      <p>Took a product from early concept through launch alongside the design team, then presented it to roughly 1,000 attendees. Demand was immediate: people left the event to go buy one.</p>
+    </li>
+
+    <li class="work-item">
+      <span class="work-num" aria-hidden="true">02</span>
+      <h3>Three brands, built from the ground up</h3>
+      <p>Managed three brands at once, from day one to meaningful revenue, entirely through organic content and community building.</p>
+    </li>
+
+    <li class="work-item">
+      <span class="work-num" aria-hidden="true">03</span>
+      <h3>Turning around a PR crisis</h3>
+      <p>Part of the team that led a brand through a difficult PR situation with honest, direct communication. It came out with broader reach and stronger customer relationships than before.</p>
+    </li>
+
+  </ol>
+</section>
+
+<section class="section">
+  <div class="section-head section-head-row">
+    <div>
+      <span class="section-index">03 &mdash; Writing</span>
+      <h2>Latest from the blog</h2>
     </div>
-
-    <div class="ri-highlight-card">
-      <div class="ri-highlight-num">02</div>
-      <div class="ri-highlight-content">
-        <h3>Growing 3 Brands from the Ground Up</h3>
-        <p>Managed three brands at the same time — from the very beginning through to meaningful revenue — entirely through organic content and community building. Consistent effort, figuring out what actually resonates with people, and showing up every day. That's it.</p>
-      </div>
-    </div>
-
-    <div class="ri-highlight-card">
-      <div class="ri-highlight-num">03</div>
-      <div class="ri-highlight-content">
-        <h3>Helping a Brand Through a Rough Patch</h3>
-        <p>When a PR situation went sideways, I was part of the team that worked to turn things around. We focused on honest, straightforward communication — and it worked. The brand came out of it with a broader reach and a stronger relationship with its customers than before.</p>
-      </div>
-    </div>
-
+    <a class="text-link" href="{{ site.baseurl }}/blog/">All posts <span aria-hidden="true">&rarr;</span></a>
   </div>
-</div>
-
-<div class="ri-bottom">
-  <div class="ri-consult">
-    <div class="ri-consult-inner">
-      <div class="ri-consult-text">
-        <h2>Want to Work Together?</h2>
-        <p>I'm happily employed but I do take on consulting work from time to time. If you're a small business and could use a hand with marketing, operations, or just figuring out the next step — feel free to reach out.</p>
-      </div>
-      <a href="mailto:{{ site.email }}" class="btn btn-primary ri-consult-btn">Say Hello</a>
-    </div>
+  <div class="post-grid">
+    {% for post in site.posts limit:3 %}
+    <a class="post-card spot" href="{{ post.url | prepend: site.baseurl }}">
+      <span class="post-card-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+      <span class="post-card-more" aria-hidden="true">Read &rarr;</span>
+    </a>
+    {% endfor %}
   </div>
-</div>
+</section>
 
-<div class="ri-blurb">
-  <p><strong>Kneejar?</strong> Yeah, I know &mdash; what does that even mean? There's a story behind it.</p>
-  <a href="{{ site.baseurl }}/about/" class="ri-blurb-link">Find out on the About page &rarr;</a>
-</div>
+<section class="cta-block">
+  <div class="cta-text">
+    <span class="section-index">Consulting</span>
+    <h2>Have a project in mind?</h2>
+    <p>I take on a small number of consulting projects with small businesses: marketing, operations, or working out what comes next.</p>
+  </div>
+  <a href="mailto:{{ site.email }}" class="btn btn-light">Start a conversation <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+</section>
