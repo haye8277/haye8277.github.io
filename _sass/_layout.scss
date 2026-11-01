@@ -1774,6 +1774,14 @@ body::before {
 a.now-text:hover {
     color: var(--accent);
     text-decoration: none;
+
+    .now-arrow { transform: translateX(4px); }
+}
+
+.now-arrow {
+    display: inline-block;
+    color: var(--accent);
+    transition: transform 0.3s $ease-out;
 }
 
 // Little equalizer next to the music line
