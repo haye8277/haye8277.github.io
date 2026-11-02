@@ -1,6 +1,7 @@
 /**
  * Colour tokens. Light is the default; dark follows the visitor's system setting.
- * Teal accent on cool blues and near-black. The tint names (peach, lilac, ...) are kept as slots.
+ * Teal accent on cool blues and near-black. The tint names (peach, lilac, sky) are kept as slots.
+ * Muted text stays above 4.5:1 on every background it sits on.
  */
 :root {
     --bg:          #f7fafb;
@@ -8,7 +9,7 @@
     --surface:     #ffffff;
     --ink:         #0b1218;
     --ink-soft:    #3a4753;
-    --muted:       #6f7e8a;
+    --muted:       #5f6e7a;
     --line:        #dde6ea;
     --shadow:      0 1px 2px rgba(12, 40, 56, 0.05), 0 10px 28px rgba(12, 40, 56, 0.08);
     --shadow-lift: 0 2px 6px rgba(12, 40, 56, 0.07), 0 22px 50px rgba(12, 40, 56, 0.14);
@@ -27,10 +28,6 @@
     --peach-ink:   #0b7471;
     --lilac:       #e2e7f3;
     --lilac-ink:   #3b5594;
-    --mint:        #dcefe8;
-    --mint-ink:    #23705a;
-    --butter:      #e6edf2;
-    --butter-ink:  #3f5b72;
     --sky:         #dbe8f3;
     --sky-ink:     #2c5f8f;
 
@@ -63,10 +60,6 @@
         --peach-ink:   #7fe0d8;
         --lilac:       #18203a;
         --lilac-ink:   #a9b9ee;
-        --mint:        #12271f;
-        --mint-ink:    #8ad8bb;
-        --butter:      #162130;
-        --butter-ink:  #a8c1d8;
         --sky:         #132233;
         --sky-ink:     #8cc0ec;
 

@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Marketing, operations and product
+description: Marketing, operations and product, with a business-first approach to problem solving. Nearly a decade with small businesses, plus the tools and side projects built along the way.
 ---
 
 <section class="hero">
   <div class="hero-text">
-    <p class="eyebrow hero-in" style="--d: 0">Jacob Hayes &mdash; Problems solved with a smile</p>
+    <p class="eyebrow hero-in" style="--d: 0">Problems solved with a smile</p>
     <h1 class="hero-title">
       <span class="line"><span class="hero-in" style="--d: 1">Marketing</span></span>
       <span class="line"><span class="hero-in" style="--d: 2">that actually</span></span>
@@ -13,7 +13,7 @@ title: Marketing, operations and product
       <span class="line"><span class="hero-in" style="--d: 4">with people.</span></span>
       <span class="note note-tools" aria-hidden="true">no fluff, no vanity metrics</span>
     </h1>
-    <p class="hero-tagline hero-in" style="--d: 5">Over ten years helping small businesses figure out what works, what doesn't, and how to keep things moving in the right direction. Serious about results, creative about getting there, and never boring along the way.</p>
+    <p class="hero-tagline hero-in" style="--d: 5">Nearly a decade helping small businesses figure out what works, what doesn't, and how to keep things moving in the right direction. Serious about results, creative about getting there, and never boring along the way.</p>
     <div class="hero-cta hero-in" style="--d: 6">
       <a href="{{ site.baseurl }}/about/" class="btn btn-primary">About me <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
       <a href="{{ site.baseurl }}/projects/" class="btn btn-ghost">Projects</a>
@@ -28,13 +28,16 @@ title: Marketing, operations and product
     <div class="portrait">
       {% include sketch-arch.svg %}
       <div class="arch">
-        <img src="{{ site.baseurl }}/assets/img/portrait.jpg" alt="Jacob Hayes" width="900" height="1127" fetchpriority="high">
+        <picture>
+          <source type="image/webp" srcset="{{ site.baseurl }}/assets/img/portrait-480.webp 480w, {{ site.baseurl }}/assets/img/portrait-760.webp 760w" sizes="(max-width: 600px) 250px, (max-width: 860px) 300px, 380px">
+          <img src="{{ site.baseurl }}/assets/img/portrait.jpg" srcset="{{ site.baseurl }}/assets/img/portrait-480.jpg 480w, {{ site.baseurl }}/assets/img/portrait.jpg 900w" sizes="(max-width: 600px) 250px, (max-width: 860px) 300px, 380px" alt="Jacob Hayes" width="900" height="1127" fetchpriority="high">
+        </picture>
       </div>
       <span class="note note-smile" aria-hidden="true">(yes, always smiling)</span>
     </div>
     <!-- A small galaxy of roles, each with its own doodle from a long time ago -->
     <figcaption>
-      <ul class="fleet" aria-label="Roles">
+      <ul class="fleet" role="list" aria-label="Roles">
         <li class="flyer flyer-1">{% include ship-xwing.svg %}<span>Marketing</span></li>
         <li class="flyer flyer-2">{% include ship-droid.svg %}<span>Project Management</span></li>
         <li class="flyer flyer-3">{% include ship-freighter.svg %}<span>Product Development</span></li>
@@ -252,15 +255,15 @@ title: Marketing, operations and product
   <div class="stat">
     <span class="stat-number"><span data-count="100">100</span>K+</span>
     <span class="stat-note" aria-hidden="true">no bots, promise</span>
-    <span class="stat-label">Followers built organically, without paid shortcuts.</span>
+    <span class="stat-label">Followers grown organically for the brands I manage, without paid shortcuts.</span>
   </div>
   <div class="stat">
     <span class="stat-number">0&thinsp;&rarr;&thinsp;1M+</span>
-    <span class="stat-label">Monthly views, grown from scratch.</span>
+    <span class="stat-label">Monthly content views across those brands' channels, built from zero.</span>
   </div>
   <div class="stat">
-    <span class="stat-number">3</span>
-    <span class="stat-label">Brands taken from launch to meaningful revenue at the same time.</span>
+    <span class="stat-number"><span data-count="9">9</span></span>
+    <span class="stat-label">Years running marketing, web and e-commerce for the same group of brands.</span>
   </div>
 </section>
 
@@ -309,7 +312,7 @@ title: Marketing, operations and product
     <span class="section-index">Highlights</span>
     <h2>Selected work <span class="note-side" aria-hidden="true">proud of these</span></h2>
   </div>
-  <ol class="work-list">
+  <ol class="work-list" role="list">
 
     <li class="work-item">
       <h3>Product launch at an industry convention</h3>
@@ -353,8 +356,11 @@ title: Marketing, operations and product
   <div class="cta-text">
     <span class="section-index">Consulting</span>
     <h2>Have a project in mind?</h2>
-    <p>I take on a small number of consulting projects with small businesses: marketing, operations, or working out what comes next. Expect honest advice, creative ideas and a wide range of know-how, all delivered with a smile.</p>
+    <p>I take on a small number of consulting projects with small businesses: marketing, operations, or working out what comes next. Expect honest advice, creative ideas and a wide range of know-how.</p>
   </div>
   {% include lets-talk.html %}
-  <a href="mailto:{{ site.email }}" class="btn btn-light">Start a conversation <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+  <div class="cta-action">
+    <a href="mailto:{{ site.email }}" class="btn btn-light">Start a conversation <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    <a class="cta-alt" href="mailto:{{ site.email }}">{{ site.email }}</a>
+  </div>
 </section>

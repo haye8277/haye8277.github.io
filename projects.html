@@ -2,6 +2,7 @@
 layout: default
 title: Projects
 permalink: /projects/
+description: "Tools built from real problems: a store-wide sale manager, an analytics tool, smart lights that follow the TV, plus music and a game made just for fun."
 ---
 
 {% assign sale_post = site.posts | where: "slug", "sale-manager" | first %}
@@ -36,7 +37,7 @@ permalink: /projects/
       <h2>Sale Manager <span class="note-side" aria-hidden="true">the one I use every day</span></h2>
       <p class="project-lede">Scheduled, store-wide discounts that show on the product, not just in the cart.</p>
       <p>Most ecommerce platforms come with promotions built in, like buy one get one or spend-and-save offers. Those only kick in at the cart, once something's added or a condition is met. What they don't do well is a proper store-wide sale: set a specific discount across hundreds of products, show it right on the product page, and have it start and stop on schedule. That's what this does.</p>
-      <ul class="project-points">
+      <ul class="project-points" role="list">
         <li>Percentage off, an amount off, or a set sale price</li>
         <li>Applied in bulk, including straight from a CSV file</li>
         <li>Shown on the product itself, not hidden until checkout</li>
@@ -62,7 +63,7 @@ permalink: /projects/
       <h2>Analytics Tool</h2>
       <p class="project-lede">Getting more out of the data a business already has.</p>
       <p>Platforms give you their own reports, but they only go so deep. This tool brings the data together so it can be reviewed properly: compared across a range of factors, used to track real return on investment, and dug into in ways the standard dashboards just don't offer.</p>
-      <ul class="project-points">
+      <ul class="project-points" role="list">
         <li>Compare performance across lots of different factors</li>
         <li>Track ROI on campaigns and spend</li>
         <li>Deeper analysis than the built-in platform reports</li>
@@ -74,7 +75,7 @@ permalink: /projects/
 
   <article class="project-card spot">
     <div class="project-meta">
-      <span class="status-tag">Just for fun</span>
+      <span class="status-tag">Weekend build</span>
       <div class="project-visual project-visual-tv" aria-hidden="true">
         <span class="tv"><span class="tv-screen"></span></span>
       </div>
@@ -83,7 +84,7 @@ permalink: /projects/
       <h2>Hue TV Sync <span class="note-side" aria-hidden="true">movie nights, upgraded</span></h2>
       <p class="project-lede">Smart lights that follow what's on screen.</p>
       <p>A very simple app for a more cinematic night in. It records a tiny copy of the TV screen and sends the colours to the Philips Hue lights around it, so the room reacts to whatever's playing.</p>
-      <ul class="project-points">
+      <ul class="project-points" role="list">
         <li>Uses screen recording to read the picture</li>
         <li>Works with the Hue lighting ecosystem</li>
         <li>Updates the lights many times a second</li>
@@ -95,7 +96,7 @@ permalink: /projects/
 
   <article class="project-card spot">
     <div class="project-meta">
-      <span class="status-tag">Just for fun</span>
+      <span class="status-tag">Side project</span>
       <div class="project-visual tint-lilac" aria-hidden="true">
         <span class="eq eq-big"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
       </div>
@@ -103,14 +104,14 @@ permalink: /projects/
     <div class="project-body">
       <h2>Knee Jar</h2>
       <p class="project-lede">Experimental electronic music.</p>
-      <p>Dark, ambient and hard to categorise. No formal training, lately with some newer production tools in the mix.</p>
+      <p>Dark, ambient and hard to categorize. No formal training and no rules, just whatever sounds good.</p>
       <a class="text-link" href="https://soundcloud.com/knee-jar" target="_blank" rel="noopener">Listen on SoundCloud <span aria-hidden="true">&#8599;</span></a>
     </div>
   </article>
 
   <article class="project-card spot">
     <div class="project-meta">
-      <span class="status-tag">Just for fun</span>
+      <span class="status-tag">Passion project</span>
       <div class="project-visual project-visual-space" aria-hidden="true">
         <span class="stars"></span>
         <span class="drifter">{% include ship-xwing.svg %}</span>
@@ -133,5 +134,8 @@ permalink: /projects/
     <p>Happy to talk through how these work, or whether a similar approach could help your business.</p>
   </div>
   {% include lets-talk.html %}
-  <a href="mailto:{{ site.email }}" class="btn btn-light">Get in touch <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+  <div class="cta-action">
+    <a href="mailto:{{ site.email }}" class="btn btn-light">Get in touch <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    <a class="cta-alt" href="mailto:{{ site.email }}">{{ site.email }}</a>
+  </div>
 </section>

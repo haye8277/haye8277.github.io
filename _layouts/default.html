@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.lang | default: 'en' }}">
 
   {% include head.html %}
 
@@ -27,6 +27,7 @@
       (function() {
         var root = document.documentElement;
         var btn = document.getElementById('back-to-top');
+        var bar = document.querySelector('.scroll-progress');
         var header = document.querySelector('.site-header');
         var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -36,7 +37,7 @@
         });
         function onScroll() {
           var max = root.scrollHeight - window.innerHeight;
-          root.style.setProperty('--progress', max > 0 ? window.scrollY / max : 0);
+          bar.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
           btn.classList.toggle('visible', window.scrollY > 600);
           header.classList.toggle('scrolled', window.scrollY > 10);
         }
@@ -67,6 +68,12 @@
           root.classList.add('no-motion');
           return;
         }
+
+        // Park the looping animations while their section is off screen (easier on phone batteries)
+        var parker = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) { entry.target.classList.toggle('is-parked', !entry.isIntersecting); });
+        }, { rootMargin: '80px 0px' });
+        document.querySelectorAll('.hero-photo, .marquee, .now, .stats, .featured-post, .project-visual, .about-photo, .flyby-lane, .story-head, .cta-block, .lost-droid').forEach(function(el) { parker.observe(el); });
 
         // Count up numbers marked with data-count
         function countUp(el) {

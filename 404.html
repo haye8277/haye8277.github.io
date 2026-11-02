@@ -1,0 +1,20 @@
+---
+layout: default
+title: Page not found
+permalink: /404.html
+sitemap: false
+description: That page isn't here. Head back to the home page or the blog.
+---
+
+<section class="page-hero not-found">
+  <!-- A droid that has clearly taken a wrong turn -->
+  <div class="lost-droid" aria-hidden="true">{% include ship-droid.svg %}<span class="note note-lost">wrong turn</span></div>
+  <p class="eyebrow hero-in" style="--d: 0">404</p>
+  <h1 class="page-title hero-in" style="--d: 1">This isn't the page you're <em>looking for</em>.</h1>
+  <p class="hero-tagline hero-in" style="--d: 2">It may have moved, or the link had a typo in it. Either way, the droid is just as lost as you are.</p>
+  <div class="link-row hero-in" style="--d: 3">
+    <a href="{{ site.baseurl }}/" class="btn btn-primary">Back home <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    <a href="{{ site.baseurl }}/blog/" class="text-link">The blog <span aria-hidden="true">&rarr;</span></a>
+    <a href="{{ site.baseurl }}/projects/" class="text-link">Projects <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</section>

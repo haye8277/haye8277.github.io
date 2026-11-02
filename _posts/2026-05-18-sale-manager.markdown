@@ -27,5 +27,3 @@ It's not flashy, but it has already saved me hours and removed a whole category 
 ## Building it
 
 I leaned heavily on modern development tools to build this. I like the practical side of new technology more than the hype, and this was a good example. Something that would have taken me months on my own came together in weeks, and I learned a lot along the way.
-
-More soon. Thanks for reading!

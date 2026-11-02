@@ -1,3 +1,7 @@
 _site
 .sass-cache
+.jekyll-cache
 .jekyll-metadata
+
+# local-only artwork that must never be published
+assets/img/2ab75d11-4cca-40e1-ab99-50610e039082.png

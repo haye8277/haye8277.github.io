@@ -1,19 +1,19 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
-
 # Site settings
-title: Knee Jar
-email:  Jacob@kneejar.com
-description: Personal Webpage of J.H
+title: Jacob Hayes
+tagline: Marketing, operations and product
+description: Marketing, operations and product, with a business-first approach to problem solving. Nearly a decade with small businesses, plus a few tools and side projects built along the way.
+email: jacob@kneejar.com
 baseurl: "" # the subpath of your site, e.g. /blog
-url: 'https://www.kneejar.com' # the base hostname & protocol for your site
-github_username:  haye8277
-linkedin_url:     https://www.linkedin.com/in/jacob-hayes-028a73170
+url: "https://www.kneejar.com" # the base hostname & protocol for your site
+lang: en-CA
+
+author: Jacob Hayes
+github_username: haye8277
+linkedin_url: https://www.linkedin.com/in/jacob-hayes-028a73170
+soundcloud_url: https://soundcloud.com/knee-jar
+# Default image for link previews (1200 x 630)
+social_image: /assets/img/social-card.jpg
+
 # Build settings
 markdown: kramdown
-
-include: [".htaccess"]
+exclude: [readme.md]
