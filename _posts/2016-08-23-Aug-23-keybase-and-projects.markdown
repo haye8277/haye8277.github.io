@@ -7,7 +7,7 @@ categories: site update
 
 ## Site Updates
 
-* Add keybase verification page at [www.kneejar.com/keybase.txt](http://www.kneejar.com/keybase.txt)
+* Add keybase verification page at www.kneejar.com/keybase.txt (since removed)
 
 
 **To Do**

@@ -12,7 +12,7 @@ The analytics tool is about reviewing that data properly. It brings everything t
 
 - **Compare performance** across a whole range of factors
 - **Track real return on investment** for campaigns and spend
-- **Analyze the data we already have** in more depth than the built-in reports allow
+- **Analyze the data that's already there** in more depth than the built-in reports allow
 
 It's less about collecting new data and more about finally getting full value out of what's already there.
 

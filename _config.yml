@@ -6,6 +6,7 @@ email: jacob@kneejar.com
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.kneejar.com" # the base hostname & protocol for your site
 lang: en-CA
+timezone: America/Toronto
 
 author: Jacob Hayes
 github_username: haye8277
