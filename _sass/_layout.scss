@@ -2866,3 +2866,79 @@ $pen-pace: cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 
 .no-motion .line-chart .chart-trend { stroke-dashoffset: 0; }
+
+// Projects: a review's stars passing from one store to the next
+.review-share {
+    width: 84%;
+    height: auto;
+    overflow: visible;
+
+    .rs-store rect {
+        fill: var(--surface);
+        stroke: var(--lilac-ink);
+        stroke-width: 0.8;
+        stroke-opacity: 0.3;
+    }
+
+    .rs-text {
+        fill: none;
+        stroke: var(--lilac-ink);
+        stroke-width: 1.6;
+        stroke-linecap: round;
+        opacity: 0.25;
+    }
+
+    .rs-stars { fill: var(--accent); }
+
+    .rs-flow {
+        fill: none;
+        stroke: var(--lilac-ink);
+        stroke-width: 1.6;
+        stroke-linecap: round;
+        stroke-dasharray: 1 2;
+        stroke-dashoffset: 1;
+        animation: rs-flow-1 4.5s $ease-out infinite;
+    }
+
+    .rs-flow-2 { animation-name: rs-flow-2; }
+
+    .rs-stars-2,
+    .rs-stars-3 {
+        transform-box: fill-box;
+        transform-origin: center;
+    }
+
+    .rs-stars-2 { animation: rs-pop-2 4.5s ease-out infinite; }
+    .rs-stars-3 { animation: rs-pop-3 4.5s ease-out infinite; }
+}
+
+@keyframes rs-flow-1 {
+    0%       { stroke-dashoffset: 1; opacity: 1; }
+    25%, 85% { stroke-dashoffset: 0; opacity: 1; }
+    100%     { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes rs-flow-2 {
+    0%, 30%  { stroke-dashoffset: 1; opacity: 1; }
+    55%, 85% { stroke-dashoffset: 0; opacity: 1; }
+    100%     { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes rs-pop-2 {
+    0%, 22%  { opacity: 0; transform: scale(0.6); }
+    30%      { opacity: 1; transform: scale(1.15); }
+    36%, 85% { opacity: 1; transform: scale(1); }
+    100%     { opacity: 0; transform: scale(1); }
+}
+
+@keyframes rs-pop-3 {
+    0%, 52%  { opacity: 0; transform: scale(0.6); }
+    60%      { opacity: 1; transform: scale(1.15); }
+    66%, 85% { opacity: 1; transform: scale(1); }
+    100%     { opacity: 0; transform: scale(1); }
+}
+
+.no-motion .review-share {
+    .rs-flow { stroke-dashoffset: 0; animation: none; }
+    .rs-stars-2, .rs-stars-3 { opacity: 1; animation: none; }
+}
