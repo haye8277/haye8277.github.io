@@ -12,6 +12,16 @@
       <a class="nav-link{% if page.url contains '/about' %} active{% endif %}" href="{{ site.baseurl }}/about/">About</a>
       <a class="nav-link{% if page.url contains '/projects' %} active{% endif %}" href="{{ site.baseurl }}/projects/">Projects</a>
       <a class="nav-link{% if page.url contains '/blog' or page.layout == 'post' %} active{% endif %}" href="{{ site.baseurl }}/blog/">Blog</a>
+      <button class="theme-toggle" type="button" aria-label="Switch between light and dark theme" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <mask id="tt-moon">
+            <rect width="24" height="24" fill="#fff" />
+            <circle class="tt-part tt-cut" cx="17" cy="8" r="7" fill="#000" />
+          </mask>
+          <circle class="tt-part tt-disc" cx="12" cy="12" r="8" mask="url(#tt-moon)" />
+          <path class="tt-part tt-rays" d="M12 1.6 V4 M12 20 V22.4 M1.6 12 H4 M20 12 H22.4 M4.6 4.6 L6.3 6.3 M17.7 17.7 L19.4 19.4 M4.6 19.4 L6.3 17.7 M17.7 6.3 L19.4 4.6" />
+        </svg>
+      </button>
       <a class="nav-cta" href="mailto:{{ site.email }}">Contact</a>
     </nav>
 

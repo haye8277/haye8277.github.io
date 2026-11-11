@@ -44,6 +44,50 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
 
+        // Light / dark switch. The site follows the system until the visitor picks;
+        // picking the system's own theme hands control back to it.
+        var toggle = document.querySelector('.theme-toggle');
+        var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        var tints = document.querySelectorAll('meta[name="theme-color"]');
+        function currentTheme() {
+          return root.getAttribute('data-theme') || (darkQuery.matches ? 'dark' : 'light');
+        }
+        function syncTheme() {
+          var picked = root.getAttribute('data-theme');
+          toggle.setAttribute('aria-label', 'Switch to ' + (currentTheme() === 'dark' ? 'light' : 'dark') + ' theme');
+          // browser chrome follows the picked theme too
+          if (tints.length === 2) {
+            tints[0].content = picked === 'dark' ? '#0b1016' : '#f7fafb';
+            tints[1].content = picked === 'light' ? '#f7fafb' : '#0b1016';
+          }
+        }
+        function applyTheme(next) {
+          var follows = next === (darkQuery.matches ? 'dark' : 'light');
+          if (follows) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', next);
+          try {
+            if (follows) localStorage.removeItem('jh-theme'); else localStorage.setItem('jh-theme', next);
+          } catch (e) {}
+          syncTheme();
+        }
+        if (toggle) {
+          toggle.hidden = false;
+          syncTheme();
+          if (darkQuery.addEventListener) darkQuery.addEventListener('change', syncTheme);
+          toggle.addEventListener('click', function() {
+            var next = currentTheme() === 'dark' ? 'light' : 'dark';
+            if (!document.startViewTransition || reduceMotion) { applyTheme(next); return; }
+            // the new theme sweeps out in a circle from the switch
+            var box = toggle.getBoundingClientRect();
+            var x = box.left + box.width / 2, y = box.top + box.height / 2;
+            root.style.setProperty('--tx', x + 'px');
+            root.style.setProperty('--ty', y + 'px');
+            root.style.setProperty('--tr', Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) + 'px');
+            root.classList.add('theme-switching');
+            var settle = function() { root.classList.remove('theme-switching'); };
+            document.startViewTransition(function() { applyTheme(next); }).finished.then(settle, settle);
+          });
+        }
+
         // Re-sign the monogram each time the logo is hovered
         var brand = document.querySelector('.brand');
         var mono = brand && brand.querySelector('.monogram');
@@ -90,7 +134,7 @@
         }
 
         // Reveal elements as they scroll into view, staggered within each group
-        var targets = document.querySelectorAll('.section-head, .stat, .skill-card, .work-item, .post-card, .cta-block, .project-card, .blog-row, .year-label, .story-head, .story-body > *, .career-path li, .step, .featured-post, .post-content > *, .fact, .now-item, .signature');
+        var targets = document.querySelectorAll('.section-head, .stat, .skill-card, .work-item, .post-card, .cta-block, .project-card, .blog-row, .year-label, .story-head, .story-body > *, .career-path li, .step, .featured-post, .post-content > *, .fact, .now-item, .signature, .project-index, .climb');
         var io = new IntersectionObserver(function(entries) {
           entries.forEach(function(entry) {
             if (!entry.isIntersecting) return;
@@ -100,7 +144,7 @@
             var steps = el.closest('.steps');
             if (steps) steps.classList.add('is-drawn');
             // hand-drawn bits draw themselves once their section shows up
-            el.querySelectorAll('.scribble-circle, .lets-talk').forEach(function(d) { d.classList.add('is-drawn'); });
+            el.querySelectorAll('.scribble-circle, .lets-talk, .doodle, .climb-line').forEach(function(d) { d.classList.add('is-drawn'); });
             el.querySelectorAll('[data-count]').forEach(countUp);
             // Hand the element back to its own hover transitions once it has landed
             setTimeout(function() {
@@ -112,6 +156,7 @@
         targets.forEach(function(el) {
           var index = Array.prototype.indexOf.call(el.parentNode.children, el);
           el.style.transitionDelay = Math.min(index, 5) * 80 + 'ms';
+          el.style.setProperty('--i', Math.min(index, 5)); // doodles inside draw in the same order
           el.classList.add('reveal');
           io.observe(el);
         });

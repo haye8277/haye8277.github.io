@@ -1,9 +1,12 @@
 /**
- * Colour tokens. Light is the default; dark follows the visitor's system setting.
+ * Colour tokens. Light is the default; dark follows the visitor's system setting
+ * unless they pick a theme with the switch in the header (data-theme on <html>).
  * Teal accent on cool blues and near-black. The tint names (peach, lilac, sky) are kept as slots.
  * Muted text stays above 4.5:1 on every background it sits on.
  */
 :root {
+    color-scheme: light;
+
     --bg:          #f7fafb;
     --bg-soft:     #edf3f5;
     --surface:     #ffffff;
@@ -32,37 +35,52 @@
     --sky-ink:     #2c5f8f;
 
     --code-bg:     #e6edf0;
+
+    // The theme switch shows a sun in light and a crescent in dark
+    --tt-disc:     0.6;
+    --tt-rays:     1;
+    --tt-cut:      14px -14px;
+}
+
+@mixin dark-tokens {
+    color-scheme: dark;
+
+    --bg:          #0b1016;
+    --bg-soft:     #111821;
+    --surface:     #141c26;
+    --ink:         #e9f0f3;
+    --ink-soft:    #b3c0c9;
+    --muted:       #7d8b96;
+    --line:        #222d39;
+    --shadow:      0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
+    --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.4), 0 20px 48px rgba(0, 0, 0, 0.5);
+
+    --accent:      #3fd2c7;   // turquoise
+    --accent-ink:  #04201f;
+    --accent-soft: #123534;
+    --accent-glow: rgba(63, 210, 199, 0.14);
+    --blue-glow:   rgba(60, 110, 200, 0.10);
+    --grain:       1;
+
+    --deep:        #12202d;
+    --deep-ink:    #eef5f7;
+
+    --peach:       #102a2a;
+    --peach-ink:   #7fe0d8;
+    --lilac:       #18203a;
+    --lilac-ink:   #a9b9ee;
+    --sky:         #132233;
+    --sky-ink:     #8cc0ec;
+
+    --code-bg:     #121a23;
+
+    --tt-disc:     1;
+    --tt-rays:     0;
+    --tt-cut:      0px 0px;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --bg:          #0b1016;
-        --bg-soft:     #111821;
-        --surface:     #141c26;
-        --ink:         #e9f0f3;
-        --ink-soft:    #b3c0c9;
-        --muted:       #7d8b96;
-        --line:        #222d39;
-        --shadow:      0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
-        --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.4), 0 20px 48px rgba(0, 0, 0, 0.5);
-
-        --accent:      #3fd2c7;   // turquoise
-        --accent-ink:  #04201f;
-        --accent-soft: #123534;
-        --accent-glow: rgba(63, 210, 199, 0.14);
-        --blue-glow:   rgba(60, 110, 200, 0.10);
-        --grain:       1;
-
-        --deep:        #12202d;
-        --deep-ink:    #eef5f7;
-
-        --peach:       #102a2a;
-        --peach-ink:   #7fe0d8;
-        --lilac:       #18203a;
-        --lilac-ink:   #a9b9ee;
-        --sky:         #132233;
-        --sky-ink:     #8cc0ec;
-
-        --code-bg:     #121a23;
-    }
+    :root:not([data-theme="light"]) { @include dark-tokens; }
 }
+
+:root[data-theme="dark"] { @include dark-tokens; }

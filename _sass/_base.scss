@@ -101,6 +101,12 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.02em;
     line-height: 1.15;
     color: var(--ink);
+    text-wrap: balance; // no stranded last word in a heading
+}
+
+// Long-form reading text avoids a lone word on its last line
+.post-content, .story-body, .project-body, .hero-tagline, .section-sub {
+    text-wrap: pretty;
 }
 
 

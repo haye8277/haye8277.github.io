@@ -7,7 +7,27 @@
       if (sessionStorage.getItem('jh-intro')) document.documentElement.classList.add('intro-seen');
       else sessionStorage.setItem('jh-intro', '1');
     } catch (e) {}
+    // A theme picked with the header switch wins over the system setting, before first paint
+    try {
+      var picked = localStorage.getItem('jh-theme');
+      if (picked === 'light' || picked === 'dark') document.documentElement.setAttribute('data-theme', picked);
+    } catch (e) {}
   </script>
+  <style>
+    /* Pages cross-fade into each other, and the theme switch sweeps out from its button.
+       Kept out of the Sass so the site's compiler never has to parse these rules. */
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition { navigation: auto; }
+    }
+    html:not(.theme-switching) .site-header { view-transition-name: site-header; }
+    html.theme-switching::view-transition-old(root) { animation: none; }
+    html.theme-switching::view-transition-new(root) { animation: theme-sweep 0.75s cubic-bezier(0.22, 1, 0.36, 1); }
+    html.theme-switching *:not(.tt-part) { transition: none !important; }
+    @keyframes theme-sweep {
+      from { clip-path: circle(0 at var(--tx) var(--ty)); }
+      to   { clip-path: circle(var(--tr) at var(--tx) var(--ty)); }
+    }
+  </style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f7fafb" media="(prefers-color-scheme: light)">

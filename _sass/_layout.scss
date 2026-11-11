@@ -187,7 +187,7 @@ body::after {
     &.scrolled {
         padding: 8px 0;
         background: var(--bg);
-        background: color-mix(in srgb, var(--bg) 82%, transparent);
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
         -webkit-backdrop-filter: blur(14px) saturate(1.4);
         backdrop-filter: blur(14px) saturate(1.4);
         border-bottom-color: var(--line);
@@ -328,6 +328,69 @@ $brand-slant: -13.5deg;
     }
 }
 
+// Light / dark switch: a sun that turns into a crescent. The shape is driven by the
+// --tt-* tokens in _theme.scss, so it always matches the theme on screen.
+.theme-toggle {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    margin: 0 -8px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    background: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+
+    &[hidden] { display: none; }
+
+    &:hover {
+        color: var(--ink);
+        border-color: var(--line);
+        background: var(--surface);
+
+        .tt-rays { rotate: 45deg; }
+    }
+
+    svg {
+        display: block;
+        width: 19px;
+        height: 19px;
+        overflow: visible;
+    }
+
+    .tt-disc,
+    .tt-rays {
+        transform-box: fill-box;
+        transform-origin: center;
+    }
+
+    .tt-disc {
+        fill: currentColor;
+        scale: var(--tt-disc);
+        transition: scale 0.5s $ease-spring;
+    }
+
+    .tt-cut {
+        translate: var(--tt-cut);
+        transition: translate 0.5s $ease-out;
+    }
+
+    .tt-rays {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        opacity: var(--tt-rays);
+        scale: calc(0.5 + var(--tt-rays) * 0.5);
+        transition: opacity 0.3s ease, scale 0.5s $ease-spring, rotate 0.6s $ease-out;
+    }
+}
+
 @include media-query($on-laptop) {
     .site-nav { gap: 20px; }
 }
@@ -337,6 +400,12 @@ $brand-slant: -13.5deg;
     .brand-name, .brand-rule, .nav-cta { display: none; }
     .site-nav { gap: 18px; }
     .nav-link { font-size: 14px; }
+    .theme-toggle { margin: 0 -6px 0 -8px; }
+}
+
+// The narrowest phones have no room for the switch; they simply follow the system
+@media screen and (max-width: 359px) {
+    .theme-toggle { display: none; }
 }
 
 
@@ -695,20 +764,60 @@ $brand-slant: -13.5deg;
 }
 
 .skill-card {
-    padding: 32px 30px 36px;
+    padding: 30px 30px 36px;
     border-right: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     transition: background-color 0.3s ease;
 
     h3 {
         font-size: 24px;
-        margin: 0 0 10px;
+        margin: 20px 0 10px;
         transition: transform 0.4s $ease-out;
     }
 
     p { color: var(--ink-soft); font-size: 15px; margin-bottom: 0; }
 
-    &:hover h3 { transform: translateX(6px); }
+    &:hover {
+        h3 { transform: translateX(6px); }
+        .skill-doodle { rotate: -8deg; scale: 1.12; }
+    }
+
+    // Phones: doodle beside the text, so six cards don't become one long scroll
+    @include media-query($on-palm) {
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        column-gap: 18px;
+        padding: 26px 22px 28px;
+
+        .skill-doodle { grid-row: span 2; margin-top: 2px; }
+        h3 { margin-top: 0; font-size: 22px; }
+    }
+}
+
+.skill-doodle {
+    display: block;
+    width: 38px;
+    height: 38px;
+    overflow: visible;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: rotate 0.45s $ease-spring, scale 0.45s $ease-spring;
+
+    @include media-query($on-palm) { width: 36px; height: 36px; }
+}
+
+// Hand-drawn doodles (expertise cards, the About steps) draw themselves when they scroll
+// into view; --i is the card's place in its row, set by the layout script
+.doodle {
+    .js & path { stroke-dasharray: 1 2; stroke-dashoffset: 1; }
+
+    .js &.is-drawn path {
+        animation: draw-path 1.3s $ease-out forwards;
+        animation-delay: calc(var(--i, 0) * 90ms + 250ms);
+    }
 }
 
 
@@ -732,11 +841,34 @@ $brand-slant: -13.5deg;
     h3 { font-size: 26px; margin: 0; transition: color 0.3s ease, transform 0.4s $ease-out; }
     p { color: var(--ink-soft); margin: 0; }
 
-    &:hover h3 { color: var(--accent); transform: translateX(6px); }
+    &:hover {
+        h3 { color: var(--accent); transform: translateX(6px); }
+        .work-result::before { width: 34px; }
+    }
 
     @include media-query($on-laptop) {
         grid-template-columns: 1fr;
         gap: 10px;
+    }
+}
+
+.work-result {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+
+    &::before {
+        content: "";
+        width: 18px;
+        height: 1px;
+        background: currentColor;
+        transition: width 0.4s $ease-out;
     }
 }
 
@@ -957,7 +1089,7 @@ $brand-slant: -13.5deg;
 
 .facts {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1.15fr 0.8fr 1.45fr 1.1fr;
     margin: 0 0 24px;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
@@ -1061,14 +1193,57 @@ $brand-slant: -13.5deg;
     border-top: 1px solid var(--line);
 }
 
+// Jump row under the page intro: one chip per project
+.project-index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: -24px 0 56px;
+
+    a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--ink-soft);
+        transition: color 0.25s ease, border-color 0.25s ease, transform 0.3s $ease-out;
+
+        &::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--muted);
+        }
+
+        &.is-live::before    { background: #3aa874; }
+        &.is-growing::before { background: #d6a03c; }
+
+        &:hover {
+            text-decoration: none;
+            color: var(--ink);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+    }
+
+    @include media-query($on-laptop) { margin: -12px 0 40px; }
+}
+
 .project-card {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 240px 1fr;
     gap: 40px;
     padding: 56px 32px;
     margin: 0 -32px;
     border-bottom: 1px solid var(--line);
     border-radius: 24px;
+    scroll-margin-top: 72px;
 
     @include media-query($on-laptop) {
         grid-template-columns: 1fr;
@@ -1648,6 +1823,16 @@ $brand-slant: -13.5deg;
     &.flyer-5 { top: 50%; right: -22%; animation-delay: 1.1s, 3.5s; }
     &.flyer-6 { top: 84%; right: -10%; animation-delay: 1.25s, 4.5s; }
 
+    // Once the battle script is running, a click or tap sends that ship into action
+    .is-live & {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: scale 0.3s $ease-spring, border-color 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover { scale: 1.06; border-color: var(--accent); box-shadow: var(--shadow-lift); }
+        &:active { scale: 0.96; }
+    }
+
     // On narrower desktops the right-hand chips tuck in so they never leave the viewport
     @media screen and (min-width: 861px) and (max-width: 1240px) {
         &.flyer-4 { right: -4%; }
@@ -2051,7 +2236,11 @@ a.now-text:hover {
     border-radius: 18px;
     overflow: hidden;
 
-    @include media-query($on-laptop) { width: 120px; margin-left: auto; }
+    // The visuals are designed at 180px wide and scaled as a whole: a third larger on desktop,
+    // smaller beside the status tag on tablets and phones (browsers without zoom keep 180px)
+    @media screen and (min-width: 861px) { zoom: 1.3; }
+
+    @include media-query($on-laptop) { width: 180px; zoom: 0.72; margin-left: auto; }
 }
 
 // Soft tinted backgrounds for the visuals (the tokens flip with the theme)
@@ -2207,10 +2396,18 @@ a.now-text:hover {
     color: var(--ink-soft);
 }
 
-// About: the road from first job to now, as a trail of stops
+// About: the road from first job to now. On phones it's a trail of stops in a row;
+// from tablets up it becomes a climb, each stop a step higher along a drawn line.
+.climb {
+    position: relative;
+    margin: 8px 0 28px;
+}
+
+.climb-line { display: none; }
+
 .career-path {
     list-style: none;
-    margin: 8px 0 28px;
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -2251,6 +2448,73 @@ a.now-text:hover {
         }
 
         &:last-child::before { box-shadow: 0 0 0 4px var(--accent-glow); }
+    }
+
+    span { position: relative; }
+}
+
+@media screen and (min-width: 601px) {
+    .climb {
+        height: 150px;
+        margin: 36px 0 40px;
+    }
+
+    // The line's viewBox is 600 wide and stretched to the row, so its stops (50, 150, ... 550)
+    // always sit over the six column centres; heights are in real pixels.
+    .climb-line {
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        opacity: 0.6;
+
+        path { vector-effect: non-scaling-stroke; }
+
+        // The stretch makes the line a little longer on screen than its own units say,
+        // so the dash is cut generously to be sure the last stop is reached
+        .js & path { stroke-dasharray: 1.25 2.5; stroke-dashoffset: 1.25; }
+        .js &.is-drawn path { animation: draw-path 1.8s $ease-out 0.25s forwards; }
+    }
+
+    .career-path {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        align-items: start;
+        gap: 0;
+        height: 100%;
+
+        li {
+            flex-direction: column;
+            gap: 12px;
+            padding-top: calc(104px - var(--n) * 20px);
+            font-size: 13.5px;
+            text-align: center;
+
+            &::before {
+                width: 9px;
+                height: 9px;
+                margin: 0;
+                background: var(--bg);
+            }
+
+            &:not(:last-child)::after { display: none; }
+
+            &.is-now::before { background: var(--accent); }
+
+            &:nth-child(1) { --n: 0; }
+            &:nth-child(2) { --n: 1; }
+            &:nth-child(3) { --n: 2; }
+            &:nth-child(4) { --n: 3; }
+            &:nth-child(5) { --n: 4; }
+            &:nth-child(6) { --n: 5; }
+        }
     }
 }
 
@@ -2542,13 +2806,11 @@ a.now-text:hover {
 }
 
 // Hand-drawn circle around a word, drawn when it scrolls into view
-.career-path li { position: relative; }
-
 .scribble-circle {
     position: absolute;
     top: -9px;
     bottom: -9px;
-    left: 4px;
+    left: -13px;
     right: -14px;
     width: auto;
     height: auto;
@@ -2669,7 +2931,7 @@ a.now-text:hover {
 
 // Without motion, show every drawing fully
 .no-motion {
-    .arch-sketch path, .scribble path, .scribble-circle path, .lets-talk path { stroke-dashoffset: 0; animation: none; }
+    .arch-sketch path, .scribble path, .scribble-circle path, .lets-talk path, .doodle path, .climb-line path { stroke-dashoffset: 0; animation: none; }
 }
 
 // Projects: a little TV spilling shifting colour into the room

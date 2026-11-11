@@ -64,6 +64,7 @@ description: Marketing, operations and product, with a business-first approach t
     layer.className = 'battle';
     layer.setAttribute('aria-hidden', 'true');
     fig.appendChild(layer);
+    fig.classList.add('is-live');
 
     var sides = {
       rebel:  { shooters: ['.flyer-1 .ship', '.flyer-3 .ship'],
@@ -190,37 +191,54 @@ description: Marketing, operations and product, with a business-first approach t
       ]; } }
     };
 
-    function stunt() {
-      if (onScreen && !document.hidden) {
-        var n = 1 + Math.floor(Math.random() * 6);
-        var flyer = fig.querySelector('.flyer-' + n);
-        var ship = flyer && flyer.querySelector('.ship');
-        var kind = ship && ship.getAttribute('class').replace(/.*ship-(\w+).*/, '$1');
-        var trick = tricks[kind];
-        if (trick && !busy[n]) {
-          busy[n] = true;
-          // fly away from the photo on desktop, straight up on phones
-          var dx = phone.matches ? 0 : (n <= 3 ? -70 : 70);
-          var dy = phone.matches ? -46 : -30;
-          flyer.style.zIndex = 4;
-          var anim = ship.animate(trick.frames(dx, dy), { duration: trick.duration, easing: trick.easing || 'ease-in-out' });
-          if (trick.shoot) {
-            setTimeout(function() {
-              var target = pick(sides[trick.shoot].targets);
-              if (target && target !== ship && target.getBoundingClientRect().width) fire(ship, target, trick.shoot);
-            }, trick.duration * 0.4);
-          }
-          setTimeout(function() {
-            anim.cancel();
-            flyer.style.zIndex = '';
-            busy[n] = false;
-          }, trick.duration);
-        }
+    function doStunt(n) {
+      var flyer = fig.querySelector('.flyer-' + n);
+      var ship = flyer && flyer.querySelector('.ship');
+      var kind = ship && ship.getAttribute('class').replace(/.*ship-(\w+).*/, '$1');
+      var trick = tricks[kind];
+      if (!trick || busy[n]) return;
+      busy[n] = true;
+      // fly away from the photo on desktop, straight up on phones
+      var dx = phone.matches ? 0 : (n <= 3 ? -70 : 70);
+      var dy = phone.matches ? -46 : -30;
+      flyer.style.zIndex = 4;
+      var anim = ship.animate(trick.frames(dx, dy), { duration: trick.duration, easing: trick.easing || 'ease-in-out' });
+      if (trick.shoot) {
+        setTimeout(function() {
+          var target = pick(sides[trick.shoot].targets);
+          if (target && target !== ship && target.getBoundingClientRect().width) fire(ship, target, trick.shoot);
+        }, trick.duration * 0.4);
       }
+      setTimeout(function() {
+        anim.cancel();
+        flyer.style.zIndex = '';
+        busy[n] = false;
+      }, trick.duration);
+    }
+
+    function stunt() {
+      if (onScreen && !document.hidden) doStunt(1 + Math.floor(Math.random() * 6));
       setTimeout(stunt, 2500 + Math.random() * 3500);
     }
 
     setTimeout(stunt, 4000);
+
+    // Click or tap a role and its ship joins in straight away: the armed ones open fire,
+    // the droids just show off
+    var armed = { 1: 'rebel', 3: 'rebel', 5: 'empire', 6: 'empire' };
+    [1, 2, 3, 4, 5, 6].forEach(function(n) {
+      var flyer = fig.querySelector('.flyer-' + n);
+      if (!flyer) return;
+      flyer.addEventListener('click', function() {
+        var ship = flyer.querySelector('.ship');
+        var side = armed[n];
+        if (side && ship) {
+          var target = pick(sides[side].targets);
+          if (target && target.getBoundingClientRect().width) fire(ship, target, side);
+        }
+        doStunt(n);
+      });
+    });
   })();
 </script>
 
@@ -275,31 +293,37 @@ description: Marketing, operations and product, with a business-first approach t
   <div class="skill-grid">
 
     <div class="skill-card spot">
+      <svg class="doodle skill-doodle" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M7 13.2 C7.2 15.2 7 17.2 7.2 19 L11.4 19.3 L22 24.6 C22.4 18.6 22.2 12.6 21.8 7.6 L11.2 12.8 Z M11.6 19.6 L13 25.6 L15.8 25.4 L14.8 21.2 M25.2 13.2 C26.4 15 26.4 17.4 25.3 19.2" /></svg>
       <h3>Marketing Management</h3>
       <p>Strategy, planning, and getting things out the door. Marketing that connects with people, not marketing that checks a box.</p>
     </div>
 
     <div class="skill-card spot">
+      <svg class="doodle skill-doodle" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M6.2 8 C12.6 7.4 19.6 7.7 25.9 7.5 C26.5 11.6 26.3 15.9 26 20 C22.3 20.5 18.6 20.2 15 20.4 L10.2 25.2 L10.6 20.3 C9 20.3 7.6 20.3 6.3 20.1 C5.8 16 5.9 12 6.2 8 Z M11.8 12.6 C13.4 16 18.8 16.2 20.6 12.6" /></svg>
       <h3>Customer Experience</h3>
       <p>From the first impression to long after the sale. It matters more than most businesses think.</p>
     </div>
 
     <div class="skill-card spot">
+      <svg class="doodle skill-doodle" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M11.6 5.4 L20.4 5.2 M12 5.6 C10.6 9.6 9.6 12.6 9.8 15.4 C11.8 19.6 14 23.2 16.1 27.2 C18.2 23.2 20.4 19.6 22.2 15.4 C22.4 12.6 21.4 9.6 20 5.4 M16.1 27 L16 16.6 M16 16.6 C14.5 16.4 14.5 13.8 16 13.8 C17.5 13.8 17.5 16.4 16 16.6" /></svg>
       <h3>Brand Management</h3>
       <p>Helping businesses figure out who they are and how to show up consistently. A clear brand makes everything else easier.</p>
     </div>
 
     <div class="skill-card spot">
+      <svg class="doodle skill-doodle" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M5.8 7.2 C12.4 6.8 19.8 7 26.3 6.8 C26.8 11.2 26.6 15.8 26.3 20 C19.6 20.5 12.6 20.1 5.9 20.3 C5.4 16 5.5 11.6 5.8 7.2 Z M16 20.4 L16.1 25 M11.6 25.4 C14.6 25.1 17.6 25.1 20.6 25.3 M10.2 11.4 L13.2 13.8 L10.3 16.2 M15.4 16.4 C17 16.3 18.6 16.4 20.2 16.3" /></svg>
       <h3>IT Management</h3>
       <p>Keeping the tech side running and making sure the tools actually serve the people using them.</p>
     </div>
 
     <div class="skill-card spot">
+      <svg class="doodle skill-doodle" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M4.8 15.6 C4.6 11.8 12.6 11.6 12.8 15.6 C13 20 5 20.2 4.8 15.6 Z M19.2 15.6 C19 11.6 27 11.8 27.2 15.6 C27.4 20.2 19.4 20 19.2 15.6 Z M12.8 15 C14.8 13.6 17.2 13.6 19.2 15 M4.9 14.8 L3 12.4 M27.1 14.8 L29 12.4" /></svg>
       <h3>Business Consulting</h3>
       <p>A fresh set of eyes. Enough small businesses behind me to spot the patterns and cut through the noise.</p>
     </div>
 
     <div class="skill-card spot">
+      <svg class="doodle skill-doodle" viewBox="0 0 32 32" aria-hidden="true"><path pathLength="1" d="M6 7.6 C9.6 7.4 13.4 7.5 17 7.4 C17.2 8.6 17.2 9.8 17 11 C13.4 11.2 9.6 11 6.1 11.1 C5.9 10 5.9 8.8 6 7.6 Z M11 14.4 C15 14.2 19 14.3 23 14.2 C23.2 15.4 23.2 16.6 23 17.8 C19 18 15 17.8 11.1 17.9 C10.9 16.8 10.9 15.6 11 14.4 Z M16.6 21.2 C19.8 21 23 21.1 26.2 21 C26.4 22.2 26.4 23.4 26.2 24.6 C23 24.8 19.8 24.6 16.7 24.7 C16.5 23.6 16.5 22.4 16.6 21.2 Z" /></svg>
       <h3>Project Management</h3>
       <p>Working with executives to turn ideas into execution, then keeping teams aligned and projects on track.</p>
     </div>
@@ -316,17 +340,26 @@ description: Marketing, operations and product, with a business-first approach t
 
     <li class="work-item">
       <h3>Product launch at an industry convention</h3>
-      <p>Took a product from early concept through launch alongside the design team, then presented it to roughly 1,000 attendees. Demand was immediate: people left the event to go buy one.</p>
+      <div>
+        <p>Took a product from early concept through launch alongside the design team, then presented it to roughly 1,000 attendees. Demand was immediate: people left the event to go buy one.</p>
+        <span class="work-result">Roughly 1,000 in the room</span>
+      </div>
     </li>
 
     <li class="work-item">
       <h3>Three brands, built from the ground up</h3>
-      <p>Managed three brands at once, from day one to meaningful revenue, entirely through organic content and community building.</p>
+      <div>
+        <p>Managed three brands at once, from day one to meaningful revenue, entirely through organic content and community building.</p>
+        <span class="work-result">All organic</span>
+      </div>
     </li>
 
     <li class="work-item">
       <h3>Turning around a PR crisis</h3>
-      <p>Part of the team that led a brand through a difficult PR situation with honest, direct communication. It came out with broader reach and stronger customer relationships than before.</p>
+      <div>
+        <p>Part of the team that led a brand through a difficult PR situation with honest, direct communication. It came out with broader reach and stronger customer relationships than before.</p>
+        <span class="work-result">Stronger than before</span>
+      </div>
     </li>
 
   </ol>
@@ -345,7 +378,7 @@ description: Marketing, operations and product, with a business-first approach t
     <a class="post-card spot" href="{{ post.url | prepend: site.baseurl }}">
       <span class="post-card-date">{{ post.date | date: "%b %-d, %Y" }}</span>
       <h3>{{ post.title }}</h3>
-      <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+      <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
       <span class="post-card-more" aria-hidden="true">Read &rarr;</span>
     </a>
     {% endfor %}

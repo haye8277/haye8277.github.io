@@ -20,7 +20,7 @@ description: Project updates and notes from Jacob Hayes, newest first, going bac
     <span class="featured-date">{{ latest.date | date: "%B %-d, %Y" }} &middot; {{ latest_words | divided_by: 200.0 | ceil }} min read</span>
   </div>
   <h2>{{ latest.title }}</h2>
-  <p>{{ latest.excerpt | strip_html | truncate: 220 }}</p>
+  <p>{{ latest.excerpt | strip_html | truncatewords: 40 }}</p>
   <span class="btn btn-primary">Read it <span class="btn-arrow" aria-hidden="true">&rarr;</span></span>
   <span class="droid-patrol" aria-hidden="true"><span class="droid-turn">{% include ship-droid.svg %}</span></span>
 </a>
@@ -37,7 +37,7 @@ description: Project updates and notes from Jacob Hayes, newest first, going bac
       <span class="blog-row-date">{{ post.date | date: "%b %-d" }}</span>
       <span class="blog-row-body">
         <span class="blog-row-title">{{ post.title }}</span>
-        {% if post.excerpt %}<span class="blog-row-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</span>{% endif %}
+        {% if post.excerpt %}<span class="blog-row-excerpt">{{ post.excerpt | strip_html | truncatewords: 26 }}</span>{% endif %}
       </span>
       <span class="blog-row-arrow" aria-hidden="true">&rarr;</span>
     </a>
