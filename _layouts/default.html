@@ -73,8 +73,10 @@
           toggle.hidden = false;
           syncTheme();
           if (darkQuery.addEventListener) darkQuery.addEventListener('change', syncTheme);
+          var queued = null; // the theme a sweep is still on its way to
+          var sweep = null;  // the sweep in charge right now
           toggle.addEventListener('click', function() {
-            var next = currentTheme() === 'dark' ? 'light' : 'dark';
+            var next = (queued || currentTheme()) === 'dark' ? 'light' : 'dark';
             if (!document.startViewTransition || reduceMotion) { applyTheme(next); return; }
             // the new theme sweeps out in a circle from the switch
             var box = toggle.getBoundingClientRect();
@@ -83,8 +85,24 @@
             root.style.setProperty('--ty', y + 'px');
             root.style.setProperty('--tr', Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) + 'px');
             root.classList.add('theme-switching');
-            var settle = function() { root.classList.remove('theme-switching'); };
-            document.startViewTransition(function() { applyTheme(next); }).finished.then(settle, settle);
+            queued = next;
+            var run = document.startViewTransition(function() {
+              applyTheme(next);
+              if (sweep === run) queued = null;
+            });
+            sweep = run;
+            var settle = function() {
+              if (sweep !== run) return; // a newer sweep took over
+              sweep = null;
+              root.classList.remove('theme-switching');
+            };
+            run.finished.then(settle, settle);
+            // a sweep cut short by a second click is fine, not an error
+            if (run.ready) run.ready.catch(function() {});
+            // never leave the choice waiting on a frame that isn't coming
+            setTimeout(function() {
+              if (sweep === run && queued === next && run.skipTransition) run.skipTransition();
+            }, 1000);
           });
         }
 
