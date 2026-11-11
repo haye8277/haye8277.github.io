@@ -13,7 +13,7 @@
 
     <main id="main" class="page-content">
       <div class="wrapper">
-        <p class="masthead-name" aria-hidden="true">Jacob Hayes</p>
+        <p class="masthead-name" aria-hidden="true">{% unless page.url contains "/about" %}<img src="{{ site.baseurl }}/assets/img/profile.jpg" alt="" width="30" height="30" loading="lazy">{% endunless %}<span>Jacob Hayes</span></p>
         {{ content }}
       </div>
     </main>

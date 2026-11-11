@@ -13,7 +13,17 @@ description: Project updates and notes from Jacob Hayes, newest first, going bac
 
 {% assign latest = site.posts.first %}
 {% assign latest_words = latest.content | number_of_words %}
-<a class="featured-post spot" href="{{ latest.url | prepend: site.baseurl }}">
+{% comment %} When the newest post is about a project, the featured card borrows that project tile {% endcomment %}
+{% assign featured_tile = "" %}
+{% case latest.slug %}
+  {% when "sale-manager" %}{% assign featured_tile = "tint-peach" %}
+  {% when "analytics-tool" %}{% assign featured_tile = "tint-sky" %}
+  {% when "getting-reviews-where-they-belong" %}{% assign featured_tile = "tint-lilac" %}
+  {% when "lights-that-follow-the-screen" %}{% assign featured_tile = "project-visual-tv" %}
+  {% when "a-game-just-for-fun" %}{% assign featured_tile = "project-visual-space" %}
+  {% when "first-build-of-the-game" %}{% assign featured_tile = "project-visual-space" %}
+{% endcase %}
+<a class="featured-post spot{% if featured_tile != "" %} has-visual{% endif %}" href="{{ latest.url | prepend: site.baseurl }}">
   <span class="note note-featured" aria-hidden="true">fresh off the press</span>
   <div class="featured-meta">
     <span class="section-index">Latest post</span>
@@ -22,6 +32,18 @@ description: Project updates and notes from Jacob Hayes, newest first, going bac
   <h2>{{ latest.title }}</h2>
   <p>{{ latest.excerpt | strip_html | truncatewords: 40 }}</p>
   <span class="btn btn-primary">Read it <span class="btn-arrow" aria-hidden="true">&rarr;</span></span>
+  {% if featured_tile != "" %}
+  <div class="project-visual featured-visual {{ featured_tile }}" aria-hidden="true">
+    {% case latest.slug %}
+      {% when "sale-manager" %}{% include visual-sale.html %}
+      {% when "analytics-tool" %}{% include visual-analytics.html %}
+      {% when "getting-reviews-where-they-belong" %}{% include visual-reviews.html %}
+      {% when "lights-that-follow-the-screen" %}{% include visual-tv.html %}
+      {% when "a-game-just-for-fun" %}{% include visual-game.html %}
+      {% when "first-build-of-the-game" %}{% include visual-game.html %}
+    {% endcase %}
+  </div>
+  {% endif %}
   <span class="droid-patrol" aria-hidden="true"><span class="droid-turn">{% include ship-droid.svg %}</span></span>
 </a>
 

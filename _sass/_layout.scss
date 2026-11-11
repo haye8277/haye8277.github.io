@@ -399,6 +399,13 @@ $brand-slant: -13.5deg;
 
 @include media-query($on-laptop) {
     .site-nav { gap: 20px; }
+
+    // tablets are touch screens too: a taller tap area, underline kept by the words
+    .nav-link {
+        padding: 11px 0;
+
+        &::after { bottom: 5px; }
+    }
 }
 
 @include media-query($on-palm) {
@@ -442,7 +449,9 @@ $brand-slant: -13.5deg;
     display: none;
 
     @include media-query($on-palm) {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 10px;
         margin: 2px 0 0;
         font-family: $heading-font-family;
         font-variation-settings: "opsz" 72;
@@ -451,6 +460,15 @@ $brand-slant: -13.5deg;
         letter-spacing: 0.24em;
         text-transform: uppercase;
         color: var(--ink);
+
+        // a small portrait beside the name (left out on About, where the photo comes next)
+        img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 0 1px var(--line);
+        }
     }
 }
 
@@ -1075,7 +1093,7 @@ $brand-slant: -13.5deg;
         box-shadow: var(--shadow-lift);
         border-color: transparent;
 
-        .post-card-more { opacity: 1; transform: none; }
+        .post-card-more { transform: translateX(5px); }
     }
 }
 
@@ -1087,17 +1105,15 @@ $brand-slant: -13.5deg;
     color: var(--muted);
 }
 
+// Always on show, so the card says what it does; it leans forward on hover
 .post-card-more {
+    align-self: flex-start;
     font-size: 14px;
     font-weight: 600;
     color: var(--accent);
-    opacity: 0;
-    transform: translateX(-8px);
-    transition: opacity 0.3s ease, transform 0.4s $ease-out;
+    transition: transform 0.4s $ease-out;
 
-    // Touch screens have no hover, so the prompt is simply there (and phones drop it)
-    @media (hover: none) { opacity: 1; transform: none; }
-    @include media-query($on-palm) { display: none; }
+    @include media-query($on-palm) { display: none; } // phones keep the compact card
 }
 
 
@@ -1418,7 +1434,7 @@ $brand-slant: -13.5deg;
     }
 
     @include media-query($on-laptop) { margin: -12px 0 40px; }
-    @include media-query($on-palm)   { a { padding: 11px 14px; } }
+    @include media-query($on-laptop) { a { padding: 11px 14px; } }
 }
 
 .project-card {
@@ -1681,6 +1697,7 @@ $brand-slant: -13.5deg;
         font-weight: 300;
         line-height: 1.55;
         color: var(--ink);
+        text-wrap: balance; // a short opener: even lines, no stranded word
     }
 
     h2 {
@@ -2588,6 +2605,31 @@ a.now-text:hover {
     }
 }
 
+// When the newest post is about a project, that project tile fills the right half
+.featured-post.has-visual {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 48px;
+    align-items: start;
+
+    .btn { justify-self: start; }
+
+    @include media-query($on-laptop) { column-gap: 32px; }
+    @include media-query($on-palm)   { display: block; }
+}
+
+.featured-visual {
+    grid-column: 2;
+    grid-row: 1 / span 4;
+    align-self: center;
+    width: 180px;
+    margin: 0 8px 12px 0;
+
+    @media screen and (min-width: 861px) { zoom: 1.45; }
+    @include media-query($on-laptop) { zoom: 1; margin: 0; }
+    @include media-query($on-palm)   { display: none; }
+}
+
 .featured-meta {
     display: flex;
     flex-wrap: wrap;
@@ -3437,6 +3479,7 @@ $pen-pace: cubic-bezier(0.45, 0.05, 0.55, 0.95);
 
     .project-card { grid-template-columns: 300px 1fr; gap: 56px; }
     .project-visual { zoom: 1.6; }
+    .featured-visual { zoom: 1.45; }
 
     .work-item { grid-template-columns: 140px 1fr 1.35fr; gap: 44px; }
 }
@@ -3456,4 +3499,19 @@ $pen-pace: cubic-bezier(0.45, 0.05, 0.55, 0.95);
     .hero-tagline { margin-bottom: 24px; }
     .hero-cta { margin-bottom: 24px; }
     .hero-photo { max-width: 340px; }
+}
+
+
+/**
+ * Projects: the tile stays in view beside its text while a long card scrolls past,
+ * and tablets get the same side-by-side layout as desktops
+ */
+@media screen and (min-width: 681px) {
+    .project-meta { position: sticky; top: 96px; align-self: start; }
+}
+
+@media screen and (min-width: 681px) and (max-width: 860px) {
+    .project-card { grid-template-columns: 180px 1fr; gap: 32px; }
+    .project-meta { flex-direction: column; align-items: flex-start; }
+    .project-visual { zoom: 1; margin-left: 0; }
 }

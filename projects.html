@@ -40,7 +40,7 @@ description: "Tools built from real problems: a store-wide sale manager, an anal
     <div class="project-meta">
       <span class="status-tag status-live">In daily use</span>
       <div class="project-visual tint-peach" aria-hidden="true">
-        <span class="price-tag"><span class="price-old">$40</span><span class="price-new">$32</span><span class="price-off">-20%</span></span>
+        {% include visual-sale.html %}
       </div>
     </div>
     <div class="project-body">
@@ -61,12 +61,7 @@ description: "Tools built from real problems: a store-wide sale manager, an anal
     <div class="project-meta">
       <span class="status-tag status-growing">In development</span>
       <div class="project-visual tint-sky" aria-hidden="true">
-        <svg class="line-chart" viewBox="0 0 120 70">
-          <path class="chart-grid" d="M10 60 H110 M10 40 H110 M10 20 H110" />
-          <path class="chart-trend" pathLength="1" d="M12 54 L32 46 L50 50 L70 33 L88 37 L108 15" />
-          <circle class="chart-peak" cx="108" cy="15" r="3.2" />
-        </svg>
-        <span class="roi-tag">ROI &uarr;</span>
+        {% include visual-analytics.html %}
       </div>
     </div>
     <div class="project-body">
@@ -87,22 +82,7 @@ description: "Tools built from real problems: a store-wide sale manager, an anal
     <div class="project-meta">
       <span class="status-tag status-live">Just launched</span>
       <div class="project-visual tint-lilac" aria-hidden="true">
-        <svg class="review-share" viewBox="0 0 120 70">
-          <defs>
-            <path id="rs-star" d="M0 -2.6 L0.75 -0.8 L2.6 -0.8 L1.1 0.35 L1.65 2.2 L0 1.1 L-1.65 2.2 L-1.1 0.35 L-2.6 -0.8 L-0.75 -0.8 Z" />
-          </defs>
-          <path class="rs-flow" pathLength="1" d="M27 20 Q41 6 55 20" />
-          <path class="rs-flow rs-flow-2" pathLength="1" d="M65 20 Q79 6 93 20" />
-          <g class="rs-store">
-            <rect x="5" y="24" width="32" height="34" rx="5" />
-            <rect x="44" y="24" width="32" height="34" rx="5" />
-            <rect x="83" y="24" width="32" height="34" rx="5" />
-          </g>
-          <path class="rs-text" d="M10 45 H32 M10 51 H25 M49 45 H71 M49 51 H64 M88 45 H110 M88 51 H103" />
-          <g class="rs-stars"><use href="#rs-star" x="10.5" y="34" /><use href="#rs-star" x="15.75" y="34" /><use href="#rs-star" x="21" y="34" /><use href="#rs-star" x="26.25" y="34" /><use href="#rs-star" x="31.5" y="34" /></g>
-          <g class="rs-stars rs-stars-2"><use href="#rs-star" x="49.5" y="34" /><use href="#rs-star" x="54.75" y="34" /><use href="#rs-star" x="60" y="34" /><use href="#rs-star" x="65.25" y="34" /><use href="#rs-star" x="70.5" y="34" /></g>
-          <g class="rs-stars rs-stars-3"><use href="#rs-star" x="88.5" y="34" /><use href="#rs-star" x="93.75" y="34" /><use href="#rs-star" x="99" y="34" /><use href="#rs-star" x="104.25" y="34" /><use href="#rs-star" x="109.5" y="34" /></g>
-        </svg>
+        {% include visual-reviews.html %}
       </div>
     </div>
     <div class="project-body">
@@ -123,7 +103,7 @@ description: "Tools built from real problems: a store-wide sale manager, an anal
     <div class="project-meta">
       <span class="status-tag">Weekend build</span>
       <div class="project-visual project-visual-tv" aria-hidden="true">
-        <span class="tv"><span class="tv-screen"></span></span>
+        {% include visual-tv.html %}
       </div>
     </div>
     <div class="project-body">
@@ -144,7 +124,7 @@ description: "Tools built from real problems: a store-wide sale manager, an anal
     <div class="project-meta">
       <span class="status-tag">Side project</span>
       <div class="project-visual tint-lilac" aria-hidden="true">
-        <span class="eq eq-big"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        {% include visual-music.html %}
       </div>
     </div>
     <div class="project-body">
@@ -159,8 +139,7 @@ description: "Tools built from real problems: a store-wide sale manager, an anal
     <div class="project-meta">
       <span class="status-tag">Passion project</span>
       <div class="project-visual project-visual-space" aria-hidden="true">
-        <span class="stars"></span>
-        <span class="drifter">{% include ship-xwing.svg %}</span>
+        {% include visual-game.html %}
       </div>
     </div>
     <div class="project-body">
