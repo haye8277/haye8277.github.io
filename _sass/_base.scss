@@ -170,7 +170,7 @@ code {
 pre {
     padding: 14px 18px;
     overflow-x: auto;
-    border-radius: 14px;
+    border-radius: 16px;
 
     > code {
         padding: 0;
@@ -193,5 +193,9 @@ pre {
         padding-right: 16px;
         padding-left: 16px;
     }
+
+    // Large monitors get a wider column, so the page does not float in empty space
+    @media screen and (min-width: 1500px) { max-width: $content-width-wide; }
+    @media screen and (min-width: 1800px) { max-width: $content-width-xwide; }
 }
 

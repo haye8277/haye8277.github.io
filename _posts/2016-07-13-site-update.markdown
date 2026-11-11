@@ -5,7 +5,7 @@ date:	2016-07-13 00:43:42 -0400
 categories:	update
 ---
 
-Just a quick update on the site today, updated the about me page, and a few other suttle things.
+Just a quick update on the site today, updated the about me page, and a few other subtle things.
 
 I have a few things I would like to do including:
 

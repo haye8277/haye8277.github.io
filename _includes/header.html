@@ -8,7 +8,7 @@
     </a>
 
     <nav class="site-nav" aria-label="Main">
-      <a class="nav-link{% if page.url == '/' or page.url == '/index.html' %} active{% endif %}" href="{{ site.baseurl }}/">Home</a>
+      <a class="nav-link nav-home{% if page.url == '/' or page.url == '/index.html' %} active{% endif %}" href="{{ site.baseurl }}/">Home</a>
       <a class="nav-link{% if page.url contains '/about' %} active{% endif %}" href="{{ site.baseurl }}/about/">About</a>
       <a class="nav-link{% if page.url contains '/projects' %} active{% endif %}" href="{{ site.baseurl }}/projects/">Projects</a>
       <a class="nav-link{% if page.url contains '/blog' or page.layout == 'post' %} active{% endif %}" href="{{ site.baseurl }}/blog/">Blog</a>

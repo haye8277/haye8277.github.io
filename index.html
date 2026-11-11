@@ -29,8 +29,8 @@ description: Marketing, operations and product, with a business-first approach t
       {% include sketch-arch.svg %}
       <div class="arch">
         <picture>
-          <source type="image/webp" srcset="{{ site.baseurl }}/assets/img/portrait-480.webp 480w, {{ site.baseurl }}/assets/img/portrait-760.webp 760w" sizes="(max-width: 600px) 250px, (max-width: 860px) 300px, 380px">
-          <img src="{{ site.baseurl }}/assets/img/portrait.jpg" srcset="{{ site.baseurl }}/assets/img/portrait-480.jpg 480w, {{ site.baseurl }}/assets/img/portrait.jpg 900w" sizes="(max-width: 600px) 250px, (max-width: 860px) 300px, 380px" alt="Jacob Hayes" width="900" height="1127" fetchpriority="high">
+          <source type="image/webp" srcset="{{ site.baseurl }}/assets/img/portrait-480.webp 480w, {{ site.baseurl }}/assets/img/portrait-760.webp 760w" sizes="(max-width: 600px) 250px, (max-width: 860px) 300px, (min-width: 1500px) 460px, 380px">
+          <img src="{{ site.baseurl }}/assets/img/portrait.jpg" srcset="{{ site.baseurl }}/assets/img/portrait-480.jpg 480w, {{ site.baseurl }}/assets/img/portrait.jpg 900w" sizes="(max-width: 600px) 250px, (max-width: 860px) 300px, (min-width: 1500px) 460px, 380px" alt="Jacob Hayes" width="900" height="1127" fetchpriority="high">
         </picture>
       </div>
       <span class="note note-smile" aria-hidden="true">(yes, always smiling)</span>
@@ -244,7 +244,7 @@ description: Marketing, operations and product, with a business-first approach t
 
 <div class="marquee" aria-label="Areas of focus">
   <div class="marquee-track">
-    {% assign focus = "Marketing management,Problems solved with a smile,Brand strategy,Creative thinking,Scripts nobody asked for,Customer experience,E-commerce,Product development,IT management,Experimental electronic music,Project management,Business consulting,Analytics" | split: "," %}
+    {% assign focus = "Marketing management,Problems solved with a smile,Brand strategy,Creative thinking,Scripts nobody asked for,Customer experience,Ecommerce,Product development,IT management,Experimental electronic music,Project management,Business consulting,Analytics" | split: "," %}
     {% for i in (1..2) %}
     <ul class="marquee-list"{% if i == 2 %} aria-hidden="true"{% endif %}>
       {% for item in focus %}<li>{{ item }}</li>{% endfor %}
@@ -257,7 +257,7 @@ description: Marketing, operations and product, with a business-first approach t
   <p class="now-label">Right now</p>
   <div class="now-item">
     <span class="now-kicker">Day job</span>
-    <span class="now-text">Marketing and e-commerce, with a lot of moving parts</span>
+    <span class="now-text">Marketing and ecommerce, with a lot of moving parts</span>
   </div>
   <div class="now-item">
     <span class="now-kicker">Making</span>
@@ -274,18 +274,21 @@ description: Marketing, operations and product, with a business-first approach t
     <span class="stat-number"><span data-count="100">100</span>K+</span>
     <span class="stat-note" aria-hidden="true">no bots, promise</span>
     <span class="stat-label">Followers grown organically for the brands I manage, without paid shortcuts.</span>
+    <span class="stat-short">Organic followers</span>
   </div>
   <div class="stat">
     <span class="stat-number">0&thinsp;&rarr;&thinsp;1M+</span>
     <span class="stat-label">Monthly content views across those brands' channels, built from zero.</span>
+    <span class="stat-short">Monthly views, from zero</span>
   </div>
   <div class="stat">
     <span class="stat-number"><span data-count="9">9</span></span>
-    <span class="stat-label">Years running marketing, web and e-commerce for the same group of brands.</span>
+    <span class="stat-label">Years running marketing, web and ecommerce for the same group of brands.</span>
+    <span class="stat-short">Years with the same brands</span>
   </div>
 </section>
 
-<section class="section">
+<section class="section band">
   <div class="section-head">
     <span class="section-index">Expertise</span>
     <h2>What I work on <span class="note-side" aria-hidden="true">the day job</span></h2>
@@ -339,24 +342,36 @@ description: Marketing, operations and product, with a business-first approach t
   <ol class="work-list" role="list">
 
     <li class="work-item">
+      <!-- a new product, fresh out of the box -->
+      <div class="work-art tint-peach" aria-hidden="true">
+        <svg class="doodle" viewBox="0 0 48 48"><path pathLength="1" d="M11.8 21.6 L24 27 L36.3 21.4 L36 34.2 L24.2 40.2 L12 34.4 Z M11.8 21.6 L23.8 16.4 L36.3 21.4 M24 27 L24.2 40.2 M24 11.4 L24.1 6.2 M15.6 13.4 L12.4 9.4 M32.4 13.4 L35.8 9.2" /></svg>
+      </div>
       <h3>Product launch at an industry convention</h3>
-      <div>
+      <div class="work-text">
         <p>Took a product from early concept through launch alongside the design team, then presented it to roughly 1,000 attendees. Demand was immediate: people left the event to go buy one.</p>
         <span class="work-result">Roughly 1,000 in the room</span>
       </div>
     </li>
 
     <li class="work-item">
+      <!-- three sprouts, each taller than the last -->
+      <div class="work-art tint-sky" aria-hidden="true">
+        <svg class="doodle" viewBox="0 0 48 48"><path pathLength="1" d="M7 39.2 C17 38.4 31 39.6 41 38.8 M13.6 38.8 C13.4 36 13.8 33.6 13.6 31.2 M13.6 31.4 C10.4 31.2 9.2 28.6 10 26.6 C12.6 27 14 28.8 13.6 31.4 M24 38.9 C23.8 34 24.2 29 24 24.6 M24 25 C20.4 24.8 19 21.8 19.8 19.4 C22.8 20 24.4 22 24 25 M24.1 30.2 C27.4 30.2 29 27.8 28.6 25.4 C25.8 25.8 24.2 27.6 24.1 30.2 M34.6 38.8 C34.4 31 34.8 23 34.6 15.8 M34.6 16.2 C31 16 29.6 13 30.4 10.4 C33.4 11 35 13.2 34.6 16.2 M34.7 22.2 C38 22.2 39.6 19.8 39.2 17.4 C36.4 17.8 34.8 19.6 34.7 22.2 M34.6 28.4 C31.2 28.4 29.6 26 30 23.6 C32.8 24 34.5 25.8 34.6 28.4" /></svg>
+      </div>
       <h3>Three brands, built from the ground up</h3>
-      <div>
+      <div class="work-text">
         <p>Managed three brands at once, from day one to meaningful revenue, entirely through organic content and community building.</p>
         <span class="work-result">All organic</span>
       </div>
     </li>
 
     <li class="work-item">
+      <!-- a dip, then a climb past where it started -->
+      <div class="work-art tint-lilac" aria-hidden="true">
+        <svg class="doodle" viewBox="0 0 48 48"><path pathLength="1" d="M8.2 18.2 C8.2 16.4 10.8 16.4 10.8 18.2 C10.8 20 8.2 20 8.2 18.2 M11.2 18.6 C15 19.2 16.6 24 18.6 30.4 C20.4 36.4 23.8 36.6 26.6 30.6 C29.8 23.6 33.4 15.6 40 10.4 M40 10.4 L33.6 10.9 M40 10.4 L39.3 16.8" /></svg>
+      </div>
       <h3>Turning around a PR crisis</h3>
-      <div>
+      <div class="work-text">
         <p>Part of the team that led a brand through a difficult PR situation with honest, direct communication. It came out with broader reach and stronger customer relationships than before.</p>
         <span class="work-result">Stronger than before</span>
       </div>
@@ -391,8 +406,8 @@ description: Marketing, operations and product, with a business-first approach t
     <h2>Have a project in mind?</h2>
     <p>I take on a small number of consulting projects with small businesses: marketing, operations, or working out what comes next. Expect honest advice, creative ideas and a wide range of know-how.</p>
   </div>
-  {% include lets-talk.html %}
   <div class="cta-action">
+    {% include lets-talk.html %}
     <a href="mailto:{{ site.email }}" class="btn btn-light">Start a conversation <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
     <a class="cta-alt" href="mailto:{{ site.email }}">{{ site.email }}</a>
   </div>

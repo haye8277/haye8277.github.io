@@ -16,7 +16,9 @@ $spacing-unit:     30px;
 
 // Width of the content area
 $content-width:    1040px;
-$reading-width:    700px;
+$content-width-wide:  1180px; // monitors from 1500px
+$content-width-xwide: 1300px; // monitors from 1800px
+$reading-width:    660px;
 
 $on-palm:          600px;
 $on-laptop:        860px;
